@@ -5,16 +5,25 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
+import HomePage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
 import ConnexionPage from "./pages/ConnexionPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
         path: "/connexion",
         element: <ConnexionPage />,
+      },
+      {
+        path: "/landing",
+        element: <LandingPage />,
       },
     ],
   },
