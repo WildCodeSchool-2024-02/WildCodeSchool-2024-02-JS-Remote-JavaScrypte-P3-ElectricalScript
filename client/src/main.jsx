@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
+import InscriptionPage from "./pages/InscriptionPage";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/landing",
         element: <LandingPage />,
+      },
+      {
+        path: "/inscription",
+        element: <InscriptionPage/>,
       },
     ],
   },
