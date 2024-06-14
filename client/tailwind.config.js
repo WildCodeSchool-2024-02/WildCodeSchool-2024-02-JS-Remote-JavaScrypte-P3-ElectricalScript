@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-
 const daisyui = require("daisyui");
 
 module.exports = {
@@ -15,6 +14,9 @@ module.exports = {
       fontFamily: {
         main: ['"Alata"', "sans-serif"],
         paraph: ['"Red Hat Display"', "sans-serif"],
+      },
+      boxShadow: {
+        "3xl": "80px 80px 10px 0",
       },
     },
   },
