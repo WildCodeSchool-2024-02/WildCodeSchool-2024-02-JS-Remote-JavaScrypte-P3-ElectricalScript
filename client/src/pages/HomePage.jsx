@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/images/Logo.png";
 import iconevoiture from "../assets/images/voiture-electrique.png";
 
@@ -20,13 +21,14 @@ export default function HomePage() {
 
       <div className="mt-40 flex flex-col justify-center items-center lg:gap-1">
         <img src={iconevoiture} alt="icone voiture" className="h-20 w-26" />
-
-        <button
-          type="button"
-          className="font-main  bg-GreenComp text-white text-2xl mx-auto px-8 rounded-md "
-        >
-          Démarrer
-        </button>
+        <Link to="/landing">
+          <button
+            type="button"
+            className="font-main  bg-GreenComp text-white text-2xl mx-auto px-8 rounded-md "
+          >
+            Démarrer
+          </button>
+        </Link>
       </div>
     </div>
   );
