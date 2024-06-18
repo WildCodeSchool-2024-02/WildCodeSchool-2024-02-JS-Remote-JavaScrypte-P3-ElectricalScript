@@ -37,6 +37,7 @@ export default function LandingPage() {
             />
           </button>
         </Link>
+        <Link to="/connexion">
         <button
           type="button"
           className="text-white font-main bg-GreenComp text-xl mx-auto px-3 py-1 rounded-md flex justify-center items-center gap-4 lg:mx-0"
@@ -44,6 +45,7 @@ export default function LandingPage() {
           Connexion
           <img src={icoconnexion} alt="icone connexion" className="h-6 w-5" />
         </button>
+        </Link>
       </div>
     </div>
   );
