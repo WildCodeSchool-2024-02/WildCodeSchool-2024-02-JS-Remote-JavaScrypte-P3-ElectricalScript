@@ -8,6 +8,7 @@ import App from "./App";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import InscriptionPage from "./pages/InscriptionPage";
+import ConnexionPage from "./pages/ConnexionPage";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/connexion",
+        element: <ConnexionPage />,
       },
       {
         path: "/landing",
