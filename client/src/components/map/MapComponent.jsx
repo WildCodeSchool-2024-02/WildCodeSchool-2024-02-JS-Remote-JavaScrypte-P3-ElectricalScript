@@ -15,7 +15,7 @@ export default function MapComponent() {
   });
   
   useEffect(() => {
-    const charlevillePositions = [
+    const testPositions = [
       { id: 1, position: [49.77352, 4.72088], name: "Place Ducale" },
       { id: 2, position: [49.77567, 4.72209], name: "Musée Rimbaud" },
       { id: 3, position: [49.76031, 4.72025], name: "Hotel de ville" },
@@ -23,7 +23,7 @@ export default function MapComponent() {
       { id: 5, position: [49.77946, 4.71886], name: "Port de plaisance" },
       { id: 6, position: [49.7637256, 4.7065998], name: "Chez Pierre" },
     ];
-    setMarkers(charlevillePositions);
+    setMarkers(testPositions);
   }, []);
 
   return (
@@ -45,7 +45,7 @@ export default function MapComponent() {
           </Marker>
         ))}
             <SearchField/>
-          <LocationMarker />
+          <LocationMarker/>
       </MapContainer>
     </div>
   );

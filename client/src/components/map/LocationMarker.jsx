@@ -9,19 +9,21 @@ export default function LocationMarker() {
   const map = useMap();
 
   useEffect(() => {
-   
-    const locateControl = L.control.locate({
+      const locateControl = L.control.locate({
       position: 'topleft',
+      showPopup: false,
       strings: {
       title: "Montre moi ou je suis"
     },
       onLocationFound: (e) => {
         setPosition(e.latlng);
-    },
+    }
     }).addTo(map);
+        
         map.on('locationfound', (e) => {
         setPosition(e.latlng);
     });
+    
     return () => {
         map.removeControl(locateControl);
     };
@@ -31,13 +33,9 @@ return (
       <div>
       {position && (
         <div>
-          Current Position: {position.lat}, {position.lng}
+          Position: {position.lat}, {position.lng}
         </div>
       )}
-    </div>
-
+      </div>
 )
-
-
-
-  }
+}
