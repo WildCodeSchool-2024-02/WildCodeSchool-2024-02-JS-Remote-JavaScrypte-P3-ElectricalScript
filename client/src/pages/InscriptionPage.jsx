@@ -1,7 +1,20 @@
-import { Link } from 'react-router-dom';
+/* eslint-disable react/jsx-props-no-spreading */
+import { useForm } from 'react-hook-form';
+import {toast} from "react-toastify";
 import logo from "../assets/images/Logo.png";
 
 function InscriptionPage() {
+
+const {register,handleSubmit, watch,formState: {errors} } = useForm();
+
+
+
+  const onSubmit = (data) => { 
+    const formData = { ...data };
+   delete formData.confirmpassword;
+    toast.success("Votre inscritption est prise en compte!")
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white">
       <div className="rounded-xl w-full max-w-md p-6">
@@ -9,7 +22,10 @@ function InscriptionPage() {
           <img src={logo} alt="Logo" className="rounded-full w-20 h-20" />
         </div>
         <div className="flex flex-col gap-3">
-          <form className="flex flex-col gap-4">
+          <form 
+          className="flex flex-col gap-4"
+          onSubmit={handleSubmit(onSubmit)} >
+            
             <div>
               <label htmlFor="username" className="text-sm font-bold">
                 Prénom :
@@ -20,8 +36,17 @@ function InscriptionPage() {
                 id="username"
                 name="username"
                 placeholder="Saisissez votre prénom"
-                required
+                {...register(" username" , {
+                  required:"Ce champ est requis !",
+                  minLength:{
+                    value: 2,
+                    message:"Votre prénom doit contenir au minimum 2 caractères"
+                  }
+                })}
               />
+              {errors?.username && (
+                <span className="text-red-500 text-center"> {errors.username.message}   </span>
+              )}
             </div>
             <div>
               <label htmlFor="userlastname" className="text-sm font-bold">
@@ -33,49 +58,17 @@ function InscriptionPage() {
                 id="userlastname"
                 name="userlastname"
                 placeholder="Saisissez votre nom"
-                required
+                {...register(" userlastname" , {
+                  required:"Ce champ est requis !",
+                  minLength:{
+                    value: 2,
+                    message:"Votre nom doit contenir au minimum 2 caractères"
+                  }
+                })}
               />
-            </div>
-            <div>
-              <label htmlFor="address" className="text-sm font-bold">
-                Adresse :
-              </label>
-              <input
-                className="input bg-white border border-gray-500 text-black placeholder-gray-500 w-full p-2 mt-1"
-                type="text"
-                id="address"
-                name="address"
-                placeholder="Saisissez votre adresse"
-                required
-              />
-            </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <label htmlFor="postalCode" className="text-sm font-bold">
-                  Code postal :
-                </label>
-                <input
-                  className="input bg-white border border-gray-500 text-black placeholder-gray-500 w-full p-2 mt-1"
-                  type="text"
-                  id="postalCode"
-                  name="postalCode"
-                  placeholder="Code postal"
-                  required
-                />
-              </div>
-              <div className="w-1/2">
-                <label htmlFor="city" className="text-sm font-bold">
-                  Ville :
-                </label>
-                <input
-                  className="input bg-white border border-gray-500 text-black placeholder-gray-500 w-full p-2 mt-1"
-                  type="text"
-                  id="city"
-                  name="city"
-                  placeholder="Ville"
-                  required
-                />
-              </div>
+               {errors?.userlastname && (
+                <span className="text-red-500 text-center"> {errors.userlastname.message}   </span>
+              )}
             </div>
             <div>
               <label htmlFor="email" className="text-sm font-bold">
@@ -87,8 +80,17 @@ function InscriptionPage() {
                 id="email"
                 name="email"
                 placeholder="Saisissez votre adresse mail"
-                required
+                {...register("email" , {
+                  required:"Votre email est obligatoire!",
+                  pattern: {
+                  value : /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/,
+                  message: "Le format de votre email est incorrect !"
+                  }
+                })}
               />
+               {errors?.email && (
+                <span className="text-red-500 text-center"> {errors.email.message}   </span>
+              )}
             </div>
             <div className="relative">
               <label htmlFor="password" className="text-sm font-bold">
@@ -100,27 +102,46 @@ function InscriptionPage() {
                 id="password"
                 name="password"
                 placeholder="Saisissez votre mot de passe"
-                required
+                {...register("password" , {
+                  required:"le mot de passe est requis!",
+                  pattern: {
+                  value : /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
+                  message: "Le format de votre mot de passe est incorrect !"
+                  }
+                })}
               />
+               {errors?.password && (
+                <span className="text-red-500 text-center"> {errors.password.message}   </span>
+              )}
             </div>
             <div>
-              <label htmlFor="passwordConfirm" className="text-sm font-bold">
+              <label htmlFor="confirmpassword" className="text-sm font-bold">
                 Confirmez votre mot de passe :
               </label>
               <input
                 className="input bg-white border border-gray-500 text-black placeholder-gray-500 w-full p-2 mt-1"
                 type="password"
-                id="passwordConfirm"
-                name="passwordConfirm"
+                id="confirmpassword"
+                name="confirmpassword"
                 placeholder="Vérification du mot de passe"
-                required
+                {...register("confirmpassword" , {
+                  required:"la confirmation du mot de passe est requise!",
+                  pattern: {
+                  value : /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
+                  message: "Le format de votre mot de passe est incorrect !"
+                  },
+                  validate : (value) => value === watch("password") || "Les mots de passe ne sont pas identiques !"
+                })}
               />
+               {errors?.confirmpassword && (
+                <span className="text-red-500 text-center"> {errors.confirmpassword.message}   </span>
+              )}
             </div>
-            <Link
-              to="/carinformationspage"
+            <button
+            type="submit"
               className="btn bg-GreenComp border-GreyComp text-white w-full p-2 mt-3 hover:bg-gray-600">
               Suivant
-            </Link>
+            </button>
           </form>
           <p className="text-sm mt-2">
             Déjà inscrit ?
