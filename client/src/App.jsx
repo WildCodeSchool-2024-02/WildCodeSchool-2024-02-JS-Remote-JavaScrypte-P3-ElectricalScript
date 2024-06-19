@@ -1,13 +1,26 @@
-import "./index.css"
-/* import { Outlet } from "react-router-dom"; */
-import MapComponent from "./components/map/MapComponent";
+import "./index.css";
+import { Outlet } from "react-router-dom";
+import { ToastContainer, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div>
-     {/*  <Outlet /> */}
-      <MapComponent />
-    </div>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
+      <Outlet />
+    </>
   );
 }
 
