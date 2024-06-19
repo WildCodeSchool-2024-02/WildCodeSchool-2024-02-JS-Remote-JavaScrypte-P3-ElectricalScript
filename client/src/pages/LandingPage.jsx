@@ -24,7 +24,7 @@ export default function LandingPage() {
         <img src={icocarte} alt="icone carte" className="h-8 w-8" />
       </button>
       <div className="mt-8 flex lg:justify-center lg:gap-32 lg:mt-20">
-        <Link to="/inscription">
+        <Link to="/register">
           <button
             type="button"
             className="text-white font-main bg-GreenComp text-xl mx-auto px-3 py-1 rounded-md flex justify-center items-center gap-4 lg:mx-0"

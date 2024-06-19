@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
-import InscriptionPage from "./pages/InscriptionPage";
+import RegisterPage from "./pages/RegisterPage";
 import ConnexionPage from "./pages/ConnexionPage";
 
 const router = createBrowserRouter([
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
         element: <LandingPage />,
       },
       {
-        path: "/inscription",
-        element: <InscriptionPage/>,
+        path: "/register",
+        element: <RegisterPage/>,
       },
     ],
   },

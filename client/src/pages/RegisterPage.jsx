@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import {toast} from "react-toastify";
 import logo from "../assets/images/Logo.png";
 
-function InscriptionPage() {
+function RegisterPage() {
 
 const {register,handleSubmit, watch,formState: {errors} } = useForm();
 
@@ -158,4 +158,4 @@ const {register,handleSubmit, watch,formState: {errors} } = useForm();
   );
 }
 
-export default InscriptionPage;
+export default RegisterPage;
