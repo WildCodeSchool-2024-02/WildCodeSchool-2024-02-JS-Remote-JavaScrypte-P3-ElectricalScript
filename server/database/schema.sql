@@ -5,32 +5,30 @@ CREATE TABLE role (
 
 CREATE TABLE socket (
     socket_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    name_type_socket VARCHAR(80) NOT NULL,
-    power_charge INT NOT NULL
+    type_prise VARCHAR(80) NOT NULL,
+    puiss_max INT NOT NULL
 );
 
 CREATE TABLE station (
     station_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    name VARCHAR(80) NOT NULL,
-    brand VARCHAR(80) NOT NULL,
-    adress VARCHAR(155) NOT NULL,
-    latitude FLOAT,
-    longitude FLOAT,
-    point_number INT,
-    status VARCHAR(80),
-    accessibility VARCHAR(80),
-    city VARCHAR(80),
-    poste_code INT,
+    n_station VARCHAR(255) NOT NULL,
+    n_enseigne VARCHAR(255) NOT NULL,
+    ad_station VARCHAR(255) NOT NULL,
+    ylatitude FLOAT,
+    xlongitude FLOAT,
+    geo_point_borne FLOAT,
+    nbre_pdc INT,
+    accessibilite VARCHAR(80),
+    code_insee_commune INT,
     socket_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (socket_id) REFERENCES socket (socket_id)
 );
 
 CREATE TABLE point(
     point_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    socket_type VARCHAR(80),
-    power FLOAT,
+    puiss_max FLOAT,
     reservation VARCHAR(80),
-    badge BOOLEAN,
+    observations VARCHAR(255),
     station_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (station_id) REFERENCES station (station_id),
     socket_id INT UNSIGNED NOT NULL,
@@ -42,12 +40,11 @@ CREATE TABLE car_type (
     brand VARCHAR(80),
     model VARCHAR(80),
     image VARCHAR(255),
-    socket_type VARCHAR(80),
     socket_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (socket_id) REFERENCES socket (socket_id)
 );
 
-CREATE TABLE user (
+CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
@@ -70,5 +67,5 @@ CREATE TABLE reservation (
     point_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (point_id) REFERENCES point(point_id),
     user_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id)
+    FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
