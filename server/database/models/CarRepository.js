@@ -6,15 +6,15 @@ class CarRepository extends AbstractRepository {
   }
 
   async create(car) {
-    const { brand, model, image, socketId } = car;
+    const { brand, model, image, socketType } = car;
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (
       brand,
       model,
-      image,
-      socket_id)
+      socket_type,
+      image)
       VALUES (?, ?, ?, ?)`,
-      [brand, model, image, socketId]
+      [brand, model, image, socketType]
     );
     return result.insertId;
   }
@@ -25,8 +25,8 @@ class CarRepository extends AbstractRepository {
       car_type_id,
       brand, 
       model,
-      image,
-      socket_id
+      socket_type,
+      image
       FROM ${this.table}
       WHERE car_type_id = ?`,
       [id]
@@ -40,23 +40,23 @@ class CarRepository extends AbstractRepository {
       car_type_id,
       brand,
       model,
-      image,
-      socket_id
+      socket_type,
+      image
       FROM ${this.table}`
     );
     return rows;
   }
 
   async update(id, car) {
-    const { brand, model, image, socketId } = car;
+    const { brand, model, image, socketType } = car;
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET 
       brand = ?, 
       model = ?, 
-      image = ?, 
-      socket_id = ? 
+      socket_type = ?,
+      image = ? 
       WHERE car_type_id = ?`,
-      [brand, model, image, socketId, id]
+      [brand, model, image, socketType, id]
     );
     return result.affectedRows > 0;
   }
