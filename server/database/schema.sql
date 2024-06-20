@@ -3,12 +3,6 @@ CREATE TABLE role (
     role VARCHAR(80)
 );
 
-CREATE TABLE socket (
-    socket_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    socket_type VARCHAR(80) NOT NULL,
-    power_charge INT NOT NULL
-);
-
 CREATE TABLE station (
     station_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(80) NOT NULL,
@@ -18,32 +12,27 @@ CREATE TABLE station (
     longitude FLOAT NOT NULL,
     point_number INT,
     position FLOAT NOT NULL,
+    socket_type VARCHAR(80),
+    power FLOAT,
     accessibility VARCHAR(80),
-    postal_code VARCHAR(25) NOT NULL,
-    socket_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (socket_id) REFERENCES socket (socket_id)
+    postal_code VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE point(
     point_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    power FLOAT,
     reservation VARCHAR(80),
-    observations VARCHAR(255),
     station_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (station_id) REFERENCES station (station_id),
-    socket_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (socket_id) REFERENCES socket (socket_id)
+    FOREIGN KEY (station_id) REFERENCES station (station_id)
 );
 CREATE TABLE car_type (
     car_type_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     brand VARCHAR(80) NOT NULL,
     model VARCHAR(80) NOT NULL,
-    image VARCHAR(255),
-    socket_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (socket_id) REFERENCES socket (socket_id)
+    socket_type VARCHAR(80),
+    image VARCHAR(255)
 );
 
-CREATE TABLE user (
+CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -63,5 +52,5 @@ CREATE TABLE reservation (
     point_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (point_id) REFERENCES point(point_id),
     user_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id)
+    FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
