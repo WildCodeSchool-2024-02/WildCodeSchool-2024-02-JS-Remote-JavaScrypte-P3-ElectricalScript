@@ -43,7 +43,7 @@ CREATE TABLE car_type (
     FOREIGN KEY (socket_id) REFERENCES socket (socket_id)
 );
 
-CREATE TABLE user (
+CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -63,5 +63,14 @@ CREATE TABLE reservation (
     point_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (point_id) REFERENCES point(point_id),
     user_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id)
+    FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+INSERT INTO role (role) VALUES ('admin');
+INSERT INTO socket (socket_type, power_charge) VALUES ('typeC', 4);
+INSERT INTO car_type (brand, model, image,  socket_id) VALUES ('peugeot', 'rs6', 'balblalbalba', 1);
+INSERT INTO users (first_name, last_name, email, password, role_id, car_type_id) VALUES ('john', 'Doe', 'john@doe.com', 'password', 1, 1);
+INSERT INTO station (
+    name, brand, adress, latitude, longitude, point_number, position, accessibility,  postal_code, socket_id
+) VALUES
+('Station 1', 'Brand A', '123 Main St', 40.712776, -74.005974, 5, 94000, 'yes', '73100', 1);
+INSERT INTO point ( power, reservation, observations, station_id, socket_id) VALUES (45, "dimanche", "mescouilles", 1, 1 );
