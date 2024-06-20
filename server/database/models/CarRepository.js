@@ -23,7 +23,8 @@ class CarRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `SELECT 
       car_type_id,
-      brand, model,
+      brand, 
+      model,
       image,
       socket_id
       FROM ${this.table}
