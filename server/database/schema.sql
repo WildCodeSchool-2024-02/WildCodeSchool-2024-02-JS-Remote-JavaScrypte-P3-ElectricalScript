@@ -65,6 +65,3 @@ CREATE TABLE reservation (
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
-
-
-INSERT INTO socket (socket_type, power_charge) VALUES ('typeC', 4);
