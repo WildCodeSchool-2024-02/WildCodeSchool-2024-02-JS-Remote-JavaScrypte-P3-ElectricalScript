@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-familly: "Alata";
+  font-style: "normal";
+  font-weight: "400";
+  src: url("./assets/fonts/Alata-Regular.ttf");
+}
+
+@font-face {
+  font-familly: "RedHat";
+  font-style: "normal";
+  font-weight: "400";
+  src: url("./assets/fonts/RedHatText-Regular.ttf");
+}
