@@ -9,6 +9,10 @@ const carRouter = require("./car/router");
 
 router.use("/car", carRouter);
 
+const roleRouter = require("./role/router");
+
+router.use("/role", roleRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
