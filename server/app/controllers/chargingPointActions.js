@@ -1,10 +1,10 @@
 const tables = require("../../database/tables");
 
 const create = async (req, res, next) => {
-  const point = req.body;
+  const chargingPoint = req.body;
 
   try {
-    const insertId = await tables.point.create(point);
+    const insertId = await tables.charging_point.create(chargingPoint);
 
     res.status(201).json({ insertId });
   } catch (e) {
@@ -14,9 +14,9 @@ const create = async (req, res, next) => {
 
 const readAll = async (req, res, next) => {
   try {
-    const point = await tables.point.readAll();
+    const chargingPoint = await tables.charging_point.readAll();
 
-    res.json(point);
+    res.json(chargingPoint);
   } catch (e) {
     next(e);
   }
@@ -24,12 +24,14 @@ const readAll = async (req, res, next) => {
 
 const readOneById = async (req, res, next) => {
   try {
-    const point = await tables.point.readOneById(req.params.id);
+    const chargingPoint = await tables.charging_point.readOneById(
+      req.params.id
+    );
 
-    if (point == null) {
+    if (chargingPoint == null) {
       res.sendStatus(404);
     } else {
-      res.json(point);
+      res.json(chargingPoint);
     }
   } catch (e) {
     next(e);
@@ -37,10 +39,13 @@ const readOneById = async (req, res, next) => {
 };
 
 const update = async (req, res, next) => {
-  const point = req.body;
+  const chargingPoint = req.body;
 
   try {
-    const updated = await tables.point.update(req.params.id, point);
+    const updated = await tables.charging_point.update(
+      req.params.id,
+      chargingPoint
+    );
 
     if (updated) {
       res.sendStatus(204);
@@ -54,7 +59,7 @@ const update = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    const destroyed = await tables.point.destroy(req.params.id);
+    const destroyed = await tables.charging_point.destroy(req.params.id);
 
     if (destroyed) {
       res.sendStatus(204);

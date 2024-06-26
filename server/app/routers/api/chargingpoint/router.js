@@ -10,14 +10,10 @@ const {
   destroy,
 } = require("../../../controllers/chargingPointActions");
 
-router.get("/", readAll);
-
-router.get("/:id", readOneById);
-
 router.post("/", create);
-
+router.get("/", readAll);
+router.get("/:id", readOneById);
 router.put("/:id", update);
-
 router.delete("/:id", destroy);
 
 /* ************************************************************************* */

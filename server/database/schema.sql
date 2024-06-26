@@ -56,3 +56,57 @@ CREATE TABLE reservation (
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
+INSERT INTO
+    station (
+        name,
+        brand,
+        address,
+        latitude,
+        longitude,
+        point_number,
+        position,
+        socket_type,
+        power,
+        accessibility,
+        postal_code
+    )
+VALUES (
+        'Station A',
+        'Brand A',
+        '123 Main St',
+        40.7128,
+        -74.0060,
+        5,
+        1,
+        'Type 1',
+        50.0,
+        '24/7',
+        '10001'
+    ),
+    (
+        'Station B',
+        'Brand B',
+        '456 Elm St',
+        34.0522,
+        -118.2437,
+        3,
+        2,
+        'Type 2',
+        100.0,
+        'Public',
+        '90001'
+    ),
+    (
+        'Station C',
+        'Brand C',
+        '789 Oak St',
+        41.8781,
+        -87.6298,
+        4,
+        3,
+        'Type 3',
+        75.0,
+        'Private',
+        '60601'
+    );
