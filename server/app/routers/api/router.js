@@ -14,7 +14,7 @@ const router = express.Router();
  */
 
 router.post("/upload", upload.single("station"), (req, res) => {
-  res.send(req.file);
+
   /**
    * Je vais récupérer le ficher présent dans req.file, et le mettre dans le dossier `uploads`
    */
@@ -28,6 +28,10 @@ router.post("/upload", upload.single("station"), (req, res) => {
     }
   );
 });
+
+const carRouter = require("./car/router");
+
+router.use("/car", carRouter);
 
 const roleRouter = require("./role/router");
 
