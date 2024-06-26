@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
 
-const upload = multer({ dest: "uploads" });
+const upload = multer({ dest: "uploads/" });
 const router = express.Router();
 
 /* ************************************************************************* */
@@ -14,6 +14,7 @@ const router = express.Router();
  */
 
 router.post("/upload", upload.single("station"), (req, res) => {
+  res.send(req.file);
   /**
    * Je vais récupérer le ficher présent dans req.file, et le mettre dans le dossier `uploads`
    */
