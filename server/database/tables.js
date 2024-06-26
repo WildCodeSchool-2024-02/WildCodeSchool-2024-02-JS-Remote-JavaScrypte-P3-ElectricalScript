@@ -2,6 +2,8 @@
 const CarRepository = require("./models/CarRepository");
 const RoleRepository = require("./models/RoleRepository");
 const UsersRepository = require("./models/UsersRepository");
+const StationRepository = require("./models/StationRepository");
+
 // Create an empty object to hold data repositories for different tables
 const tables = {};
 
@@ -13,6 +15,8 @@ const tables = {};
 tables.car_type = new CarRepository();
 tables.role = new RoleRepository();
 tables.users = new UsersRepository();
+tables.station = new StationRepository();
+
 /* ************************************************************************* */
 
 // Use a Proxy to customize error messages when trying to access a non-existing table
