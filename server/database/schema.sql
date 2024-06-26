@@ -56,4 +56,3 @@ CREATE TABLE reservation (
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
