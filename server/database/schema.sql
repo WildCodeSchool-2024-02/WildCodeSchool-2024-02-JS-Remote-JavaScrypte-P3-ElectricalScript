@@ -5,16 +5,16 @@ CREATE TABLE role (
 
 CREATE TABLE station (
     station_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    name VARCHAR(80) NOT NULL,
-    brand VARCHAR(80) NOT NULL,
-    adress VARCHAR(155) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    brand VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
     point_number INT,
     position FLOAT NOT NULL,
     socket_type VARCHAR(80),
     power FLOAT,
-    accessibility VARCHAR(80),
+    accessibility VARCHAR(255),
     postal_code VARCHAR(25) NOT NULL
 );
 
@@ -26,8 +26,8 @@ CREATE TABLE point(
 );
 CREATE TABLE car_type (
     car_type_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    brand VARCHAR(80) NOT NULL,
-    model VARCHAR(80) NOT NULL,
+    brand VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
     socket_type VARCHAR(80),
     image VARCHAR(255)
 );
@@ -36,11 +36,11 @@ CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(80) NOT NULL,
-    role_id INT UNSIGNED NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role_id INT UNSIGNED,
     FOREIGN KEY (role_id) REFERENCES role (role_id),
-    car_type_id INT UNSIGNED NOT NULL,
+    car_type_id INT UNSIGNED,
     FOREIGN KEY (car_type_id) REFERENCES car_type (car_type_id)
 );
 CREATE TABLE reservation (
