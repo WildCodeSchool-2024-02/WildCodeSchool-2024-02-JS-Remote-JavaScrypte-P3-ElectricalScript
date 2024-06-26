@@ -28,6 +28,18 @@ router.post("/upload", upload.single("station"), (req, res) => {
   );
 });
 
+const roleRouter = require("./role/router");
+
+router.use("/role", roleRouter);
+
+const usersRouter = require("./users/router");
+
+router.use("/users", usersRouter);
+
+const stationRouter = require("./station/router");
+
+router.use("/station", stationRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
