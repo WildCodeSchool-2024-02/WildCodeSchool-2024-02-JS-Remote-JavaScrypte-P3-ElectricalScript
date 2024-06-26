@@ -13,6 +13,10 @@ const roleRouter = require("./role/router");
 
 router.use("/role", roleRouter);
 
+const pointRouter = require("./point/router");
+
+router.use("/point", pointRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
