@@ -2,7 +2,7 @@ const AbstractRepository = require("./AbstractRepository");
 
 class PointRepository extends AbstractRepository {
   constructor() {
-    super({ table: "point" });
+    super({ table: "charging_point" });
   }
 
   async create(point) {

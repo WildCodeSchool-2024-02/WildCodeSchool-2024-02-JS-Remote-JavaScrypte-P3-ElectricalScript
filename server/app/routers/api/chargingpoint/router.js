@@ -8,7 +8,7 @@ const {
   readOneById,
   update,
   destroy,
-} = require("../../../controllers/pointActions");
+} = require("../../../controllers/chargingPointActions");
 
 router.get("/", readAll);
 
