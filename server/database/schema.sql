@@ -24,6 +24,7 @@ CREATE TABLE point(
     station_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (station_id) REFERENCES station (station_id)
 );
+
 CREATE TABLE car_type (
     car_type_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     brand VARCHAR(255) NOT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE users (
     car_type_id INT UNSIGNED,
     FOREIGN KEY (car_type_id) REFERENCES car_type (car_type_id)
 );
+
 CREATE TABLE reservation (
     reservation_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     status VARCHAR(80),

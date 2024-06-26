@@ -15,13 +15,18 @@ class PointRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} AS p JOIN station AS s ON p.station_id = s.station_id`
+    );
     return rows;
   }
 
   async readOneById(id) {
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE point_id = ?`,
+      `SELECT * FROM ${this.table} AS p
+      JOIN station AS s ON p.station_id = s.station_id
+      WHERE p.point_id = ?
+    `,
       [id]
     );
     return rows[0];
