@@ -13,6 +13,10 @@ const roleRouter = require("./role/router");
 
 router.use("/role", roleRouter);
 
+const usersRouter = require("./users/router");
+
+router.use("/users", usersRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
