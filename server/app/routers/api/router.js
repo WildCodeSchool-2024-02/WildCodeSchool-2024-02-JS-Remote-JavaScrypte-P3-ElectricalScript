@@ -17,6 +17,10 @@ const usersRouter = require("./users/router");
 
 router.use("/users", usersRouter);
 
+const stationRouter = require("./station/router");
+
+router.use("/station", stationRouter);
+
 const pointRouter = require("./point/router");
 
 router.use("/point", pointRouter);
