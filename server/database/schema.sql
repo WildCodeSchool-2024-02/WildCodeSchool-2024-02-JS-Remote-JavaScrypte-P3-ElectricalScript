@@ -18,6 +18,8 @@ CREATE TABLE station (
     postal_code VARCHAR(25) NOT NULL
 );
 
+
+
 CREATE TABLE point(
     point_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     reservation VARCHAR(80),
@@ -54,3 +56,4 @@ CREATE TABLE reservation (
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+

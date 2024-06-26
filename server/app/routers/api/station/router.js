@@ -3,15 +3,23 @@ const express = require("express");
 const router = express.Router();
 
 /* ************************************************************************* */
-// Import And Use Routers Here
+// Define Your API Routes Here
 /* ************************************************************************* */
-const carRouter = require("./car/router");
 
-router.use("/car", carRouter);
+// Import item-related actions
+const {
+  create,
+  readAll,
+  readOneById,
+  update,
+  destroy,
+} = require("../../../controllers/stationActions");
 
-const stationRouter = require("./station/router");
-
-router.use("/station", stationRouter);
+router.post("/", create);
+router.get("/", readAll);
+router.get("/:id", readOneById);
+router.put("/:id", update);
+router.delete("/:id", destroy);
 
 /* ************************************************************************* */
 
