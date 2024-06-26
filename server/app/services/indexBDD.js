@@ -4,7 +4,7 @@ const path = require("path");
 
 const results = [];
 
-const filePath = path.join(__dirname, "bornes-irve.csv");
+const filePath = path.join(__dirname,"..", "..","uploads", "bornes-irve.csv");
 
 fs.createReadStream(filePath)
   .pipe(csv({ separator: ";" }))
@@ -25,7 +25,7 @@ fs.createReadStream(filePath)
     const renameData = {
       brand: data.n_enseigne,
       name: data.n_station,
-      adress: data.ad_station,
+      address: data.ad_station,
       longitude: data.xlongitude,
       latitude: data.ylatitude,
       points_number: data.nbre_pdc,
@@ -39,6 +39,4 @@ fs.createReadStream(filePath)
 
     results.push(renameData);
   })
-  .on("end", () => {
-  
-  });
+  .on("end", () => console.info(results));
