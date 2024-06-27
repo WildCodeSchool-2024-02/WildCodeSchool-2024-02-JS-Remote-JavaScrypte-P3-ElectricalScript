@@ -18,12 +18,13 @@ CREATE TABLE station (
     postal_code VARCHAR(25) NOT NULL
 );
 
-CREATE TABLE point(
-    point_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE charging_point (
+    charging_point_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     reservation VARCHAR(80),
     station_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (station_id) REFERENCES station (station_id)
 );
+
 CREATE TABLE car_type (
     car_type_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     brand VARCHAR(255) NOT NULL,
@@ -43,14 +44,15 @@ CREATE TABLE users (
     car_type_id INT UNSIGNED,
     FOREIGN KEY (car_type_id) REFERENCES car_type (car_type_id)
 );
+
 CREATE TABLE reservation (
     reservation_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     status VARCHAR(80),
     price FLOAT NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    point_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (point_id) REFERENCES point(point_id),
+    charging_point_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (charging_point_id) REFERENCES charging_point (charging_point_id),
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
