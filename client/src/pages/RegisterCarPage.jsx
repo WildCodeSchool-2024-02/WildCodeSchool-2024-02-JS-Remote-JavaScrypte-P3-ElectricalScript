@@ -32,7 +32,7 @@ function RegisterCarPage() {
     <div className="min-h-screen flex items-center justify-center bg-black text-black">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
         <div className="col-span-4 mb-4 text-center">
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-2xl font-bold text-white">
             Veuillez sélectionner le type de votre véhicule pour finaliser votre inscription
           </h1>
         </div>
