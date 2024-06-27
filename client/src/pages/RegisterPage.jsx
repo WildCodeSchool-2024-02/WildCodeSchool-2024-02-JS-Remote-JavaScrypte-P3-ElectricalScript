@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useState } from 'react';
+import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import {toast} from "react-toastify";
 import logo from "../assets/images/Logo.png";
 
+
 function RegisterPage() {
 
 const {register,handleSubmit, watch,formState: {errors} } = useForm();
+const [isFirstButtonClicked, setIsFirstButtonClicked] = useState(false);
 
 
 
@@ -13,6 +17,7 @@ const {register,handleSubmit, watch,formState: {errors} } = useForm();
     const formData = { ...data };
    delete formData.confirmpassword;
     toast.success("Votre inscritption est prise en compte!")
+    setIsFirstButtonClicked(true);
   }
 
   return (
@@ -137,11 +142,20 @@ const {register,handleSubmit, watch,formState: {errors} } = useForm();
                 <span className="text-red-500 text-center"> {errors.confirmpassword.message}   </span>
               )}
             </div>
-            <button
-            type="submit"
-              className="btn bg-GreenComp border-GreyComp text-white w-full p-2 mt-3 hover:bg-gray-600">
-              Suivant
-            </button>
+            
+              <button
+                type="submit"
+                className="btn bg-GreenComp text-white w-full p-2 mt-3 hover:bg-gray-600"
+              >
+                Inscription
+              </button>
+              <Link to="/registerCar"
+                type="button"
+                disabled={!isFirstButtonClicked}
+                className={`btn w-full p-2 mt-3 ${isFirstButtonClicked ? 'bg-yellow-500 text-white  hover:bg-yellow-600' : 'bg-gray-500 cursor-not-allowed'}`}
+              >
+                Suivant
+              </Link>
           </form>
           <p className="text-sm mt-2">
             Déjà inscrit ?
