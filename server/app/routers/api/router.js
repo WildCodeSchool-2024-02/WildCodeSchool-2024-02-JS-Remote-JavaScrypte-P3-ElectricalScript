@@ -21,6 +21,10 @@ const stationRouter = require("./station/router");
 
 router.use("/station", stationRouter);
 
+const chargingPointRouter = require("./chargingpoint/router");
+
+router.use("/chargingpoint", chargingPointRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
