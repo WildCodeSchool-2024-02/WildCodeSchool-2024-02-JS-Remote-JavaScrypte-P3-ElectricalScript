@@ -1,35 +1,68 @@
-import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import axios from "axios";
+import L from "leaflet";
 import SearchField from "./SearchField";
+
 import LocationMarker from "./LocationMarker";
+import LoadingComponent from "./LoadingComponent";
+
+import greenIconUrl from "../../assets/images/marker-icon-green.png";
+import greenIconRetinaUrl from "../../assets/images/marker-icon-2x-green.png";
+import shadowIcon from "../../assets/images/marker-shadow.png";
 
 export default function MapComponent() {
   const [markers, setMarkers] = useState([]);
-    
-  L.Icon.mergeOptions({
-    iconRetinaUrl: '../../assets/images/marker-icon-2x.png',
-    iconUrl: '../../assets/images/marker-icon.png',
-    shadowUrl: '../../assets/images/marker-shadow.png'
+  const [loading, setLoading] = useState(false);
+
+  const greenIcon = new L.Icon({
+    iconUrl: greenIconUrl,
+    iconRetinaUrl: greenIconRetinaUrl,
+    shadowUrl: shadowIcon,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
   });
-  
+
   useEffect(() => {
-    const testPositions = [
-      { id: 1, position: [49.77352, 4.72088], name: "Place Ducale" },
-      { id: 2, position: [49.77567, 4.72209], name: "Musée Rimbaud" },
-      { id: 3, position: [49.76031, 4.72025], name: "Hotel de ville" },
-      { id: 4, position: [49.77232, 4.72929], name: "Stade du petit bois" },
-      { id: 5, position: [49.77946, 4.71886], name: "Port de plaisance" },
-      { id: 6, position: [49.7637256, 4.7065998], name: "Chez Pierre" },
-    ];
-    setMarkers(testPositions);
+    const fetchPositions = async () => {
+      setLoading(true);
+
+      try {
+        const { data } = await axios.get("http://localhost:3310/api/station");
+        const validMarkers = data.filter(
+          (station) => station.latitude && station.longitude
+        );
+
+        setMarkers(
+          validMarkers.map((station) => ({
+            id: station.station_id,
+            position: [station.latitude, station.longitude],
+            name: station.name,
+          }))
+        );
+      } catch (error) {
+        console.info("Erreur:", error);
+      }
+      setLoading(false);
+    };
+    fetchPositions();
   }, []);
 
+  if (loading) {
+    return (
+      <div>
+        <LoadingComponent />
+      </div>
+    );
+  }
   return (
-    <div className='h-screen'>
+    <div className="h-screen">
       <MapContainer
-        center={{ lat: 47.27387, lng: 2.70264 }}
+        center={[47.27387, 2.70264]}
         zoom={6}
         className="w-full h-full"
       >
@@ -37,15 +70,19 @@ export default function MapComponent() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {markers.map(marker => (
-          <Marker key={marker.id} 
-                  position={marker.position}>
-              <Popup>{marker.name}
-              </Popup>
-          </Marker>
-        ))}
-            <SearchField/>
-          <LocationMarker/>
+        <MarkerClusterGroup
+          chunkedLoading
+          maxClusterRadius={70}
+          removeOutsideVisibleBounds
+        >
+          {markers.map((marker) => (
+            <Marker key={marker.id} position={marker.position} icon={greenIcon}>
+              <Popup>{marker.name}</Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
+        <SearchField />
+        <LocationMarker />
       </MapContainer>
     </div>
   );
