@@ -13,13 +13,13 @@ function RegisterPage() {
     reset,
     formState: { errors },
   } = useForm();
-  const [isFirstButtonClicked, setIsFirstButtonClicked] = useState(false);
+  const [displaySecondButton, setDisplaySecondButton] = useState(false);
 
   const onSubmit = (data) => {
     const formData = { ...data };
     delete formData.confirmpassword;
     toast.success("Votre inscritption est prise en compte!");
-    setIsFirstButtonClicked(true);
+    setDisplaySecondButton(true);
     reset();
   };
 
@@ -175,8 +175,8 @@ function RegisterPage() {
             <Link
               to="/registerCar"
               type="button"
-              disabled={!isFirstButtonClicked}
-              className={`btn w-full p-2 mt-3 ${isFirstButtonClicked ? "bg-yellow-500 text-white  hover:bg-yellow-600" : "bg-gray-500 cursor-not-allowed"}`}
+              disabled={!displaySecondButton}
+              className={`btn w-full p-2 mt-3 ${displaySecondButton ? "bg-yellow-500 text-white  hover:bg-yellow-600" : "bg-gray-500 cursor-not-allowed"}`}
             >
               Suivant
             </Link>
