@@ -32,7 +32,9 @@ export default function MapComponent() {
       setLoading(true);
 
       try {
-        const { data } = await axios.get("http://localhost:3310/api/station");
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/station`
+        );
         const validMarkers = data.filter(
           (station) => station.latitude && station.longitude
         );
