@@ -15,14 +15,15 @@ export default function LandingPage() {
           votre chemin !
         </p>
       </div>
-
-      <button
-        type="button"
-        className="text-white mt-44 font-main bg-GreenComp text-2xl mx-auto px-8 py-1 rounded-md flex justify-center gap-4"
-      >
-        Accéder à la carte
-        <img src={icocarte} alt="icone carte" className="h-8 w-8" />
-      </button>
+      <Link to="/map">
+        <button
+          type="button"
+          className="text-white mt-44 font-main bg-GreenComp text-2xl mx-auto px-8 py-1 rounded-md flex justify-center gap-4"
+        >
+          Accéder à la carte
+          <img src={icocarte} alt="icone carte" className="h-8 w-8" />
+        </button>
+      </Link>
       <div className="mt-8 flex lg:justify-center lg:gap-32 lg:mt-20">
         <Link to="/register">
           <button
@@ -38,13 +39,13 @@ export default function LandingPage() {
           </button>
         </Link>
         <Link to="/connexion">
-        <button
-          type="button"
-          className="text-white font-main bg-GreenComp text-xl mx-auto px-3 py-1 rounded-md flex justify-center items-center gap-4 lg:mx-0"
-        >
-          Connexion
-          <img src={icoconnexion} alt="icone connexion" className="h-6 w-5" />
-        </button>
+          <button
+            type="button"
+            className="text-white font-main bg-GreenComp text-xl mx-auto px-3 py-1 rounded-md flex justify-center items-center gap-4 lg:mx-0"
+          >
+            Connexion
+            <img src={icoconnexion} alt="icone connexion" className="h-6 w-5" />
+          </button>
         </Link>
       </div>
     </div>

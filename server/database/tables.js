@@ -1,5 +1,10 @@
 // Import the repository modules responsible for handling data operations on the tables
 const CarRepository = require("./models/CarRepository");
+const RoleRepository = require("./models/RoleRepository");
+const UsersRepository = require("./models/UsersRepository");
+const StationRepository = require("./models/StationRepository");
+const ChargingPointRepository = require("./models/ChargingPointRepository");
+const ReservationRepository = require("./models/ReservationRepository");
 
 // Create an empty object to hold data repositories for different tables
 const tables = {};
@@ -10,6 +15,11 @@ const tables = {};
 
 // Register each repository as data access point for its table
 tables.car_type = new CarRepository();
+tables.role = new RoleRepository();
+tables.users = new UsersRepository();
+tables.station = new StationRepository();
+tables.charging_point = new ChargingPointRepository();
+tables.reservation = new ReservationRepository();
 
 /* ************************************************************************* */
 

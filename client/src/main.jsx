@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import RegisterPage from "./pages/RegisterPage";
 import ConnexionPage from "./pages/ConnexionPage";
+import RegisterCarPage from "./pages/RegisterCarPage";
+import MapPage from "./pages/MapPage";
 
 const router = createBrowserRouter([
   {
@@ -27,8 +29,16 @@ const router = createBrowserRouter([
         element: <LandingPage />,
       },
       {
+        path: "/map",
+        element: <MapPage />,
+      },
+      {
         path: "/register",
-        element: <RegisterPage/>,
+        element: <RegisterPage />,
+      },
+      {
+        path: "/registerCar",
+        element: <RegisterCarPage />,
       },
     ],
   },
