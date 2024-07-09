@@ -19,7 +19,7 @@ export default function SearchField() {
 
     map.on("geosearch/showlocation", (result) => {
       const { x, y } = result.location;
-      map.flyTo([y, x], 14);
+      map.flyTo([y, x], 13);
     });
 
     return () => {
