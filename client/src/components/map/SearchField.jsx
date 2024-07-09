@@ -12,8 +12,16 @@ export default function SearchField() {
       provider,
       style: "bar",
       showMarker: false,
+      autoClose: true,
+      retainZoomLevel: true,
     });
     map.addControl(searchControl);
+
+    map.on("geosearch/showlocation", (result) => {
+      const { x, y } = result.location;
+      map.flyTo([y, x], 14);
+    });
+
     return () => {
       map.removeControl(searchControl);
     };
