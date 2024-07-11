@@ -10,7 +10,7 @@ function Cars() {
   });
 
   const fetchCars = () => {
-    fetch('http://localhost:3310/api/car')
+    fetch (`${import.meta.env.VITE_API_URL}/api/car`)
       .then(response => response.json())
       .then(data => setCars(data))
       .catch(error => console.error('Error fetching cars data:', error));
@@ -31,7 +31,7 @@ function Cars() {
   const handleAddCar = () => {
     console.info('Adding car:', newCar);
   
-    fetch('http://localhost:3310/api/car', {
+    fetch(`${import.meta.env.VITE_API_URL}/api/car`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
