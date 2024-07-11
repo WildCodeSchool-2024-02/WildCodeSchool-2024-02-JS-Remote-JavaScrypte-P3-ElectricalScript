@@ -31,24 +31,16 @@ const userSchema = z.object({
     message:
       "Votre mot de passe doit contenir au minimun 1 chiffre, 1 majuscule, 1 minuscule, un caractère spéciale et faire entre 8 et 32 caractères",
   }),
-  roleId: z.number({
-    invalid_type_error: "doit être un nombre ",
-  }),
-  carTypeId: z.number({
-    invalid_type_error: "doit être un nombre ",
-  }),
 });
 
 const validateUserSchema = (req, res, next) => {
-  const { firstName, lastName, email, password, roleId, carTypeId } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   const validate = userSchema.safeParse({
     firstName,
     lastName,
     email,
     password,
-    roleId,
-    carTypeId,
   });
 
   if (!validate.success) {
