@@ -2,7 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-
 /* ************************************************************************* */
 // Import And Use Routers Here
 /* ************************************************************************* */
@@ -24,10 +23,6 @@ router.use("/users", usersRouter);
 const stationRouter = require("./station/router");
 
 router.use("/station", stationRouter);
-
-const chargingPointRouter = require("./chargingpoint/router");
-
-router.use("/chargingpoint", chargingPointRouter);
 
 const reservationRouter = require("./reservation/router");
 
