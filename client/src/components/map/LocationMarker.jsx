@@ -13,6 +13,8 @@ export default function LocationMarker() {
       .locate({
         position: "topleft",
         showPopup: false,
+        flyTo: true,
+        initialZoomLevel: 13,
         strings: {
           title: "Montre moi ou je suis",
         },
