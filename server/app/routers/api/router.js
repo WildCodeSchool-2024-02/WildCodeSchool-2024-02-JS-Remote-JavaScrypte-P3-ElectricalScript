@@ -2,7 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-
 /* ************************************************************************* */
 // Import And Use Routers Here
 /* ************************************************************************* */
@@ -32,6 +31,10 @@ router.use("/chargingpoint", chargingPointRouter);
 const reservationRouter = require("./reservation/router");
 
 router.use("/reservation", reservationRouter);
+
+const authentificationRouter = require("./auth/router");
+
+router.use("/auth", authentificationRouter);
 /* ************************************************************************* */
 
 module.exports = router;
