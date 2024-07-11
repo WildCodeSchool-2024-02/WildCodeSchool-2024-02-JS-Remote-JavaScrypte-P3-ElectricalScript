@@ -18,8 +18,7 @@ class CarSeeder extends AbstractSeeder {
       });
     });
   }
-
-  // Méthode pour ajouter une nouvelle voiture manuellement
+  
   async addCarManually(data) {
     try {
       const insertedCar = await this.insert({
@@ -27,7 +26,7 @@ class CarSeeder extends AbstractSeeder {
         model: data.model,
         image: data.image,
         socket_type: data.socket_type,
-        refName: `manual_car_${Date.now()}`, // Générer une référence unique
+        refName: `manual_car_${Date.now()}`,
       });
 
       console.info("Car added manually:", insertedCar);
