@@ -7,10 +7,10 @@ const reservationSchema = z.object({
   price: z.number({
     invalid_type_error: "Votre prix doit être indiqué par un chiffre",
   }),
-  startTime: z.string().time({
+  startAt: z.string({
     invalid_type_error: "Vous devez indiquer une date au bon format",
   }),
-  endTime: z.string().time({
+  endAt: z.string({
     invalid_type_error: "Vous devez indiquer une date au bon format",
   }),
   userId: z.number({
@@ -20,13 +20,13 @@ const reservationSchema = z.object({
 });
 
 const validateReservationSchema = (req, res, next) => {
-  const { status, price, startTime, endTime, userId } = req.body;
+  const { status, price, startAt, endAt, userId } = req.body;
 
   const validate = reservationSchema.safeParse({
     status,
     price,
-    startTime,
-    endTime,
+    startAt,
+    endAt,
     userId,
   });
 
