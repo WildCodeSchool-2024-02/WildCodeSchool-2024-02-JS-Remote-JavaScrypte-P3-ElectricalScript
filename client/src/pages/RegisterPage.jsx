@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -15,12 +16,21 @@ function RegisterPage() {
   } = useForm();
   const [displaySecondButton, setDisplaySecondButton] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formData = { ...data };
     delete formData.confirmpassword;
     toast.success("Votre inscritption est prise en compte!");
     setDisplaySecondButton(true);
     reset();
+    try {
+      const response = await axios.post(
+        "http://localhost:3310/api/users/",
+        data
+      );
+      console.info(response.data.message);
+    } catch (e) {
+      console.error(e.response.data);
+    }
   };
 
   return (
@@ -35,16 +45,17 @@ function RegisterPage() {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
-              <label htmlFor="username" className="text-sm font-bold">
+              <label htmlFor="firstName" className="text-sm font-bold">
                 Prénom :
               </label>
               <input
                 className="input bg-white border border-gray-500 text-black placeholder-gray-500 w-full p-2 mt-1"
                 type="text"
-                id="username"
-                name="username"
+                id="firstName"
+                name="firstName"
+                defaultValue=""
                 placeholder="Saisissez votre prénom"
-                {...register(" username", {
+                {...register("firstName", {
                   required: "Ce champ est requis !",
                   minLength: {
                     value: 2,
@@ -53,24 +64,23 @@ function RegisterPage() {
                   },
                 })}
               />
-              {errors?.username && (
+              {errors?.firstName && (
                 <span className="text-red-500 text-center">
-                  {" "}
-                  {errors.username.message}{" "}
+                  {errors.firstName.message}
                 </span>
               )}
             </div>
             <div>
-              <label htmlFor="userlastname" className="text-sm font-bold">
+              <label htmlFor="lastName" className="text-sm font-bold">
                 Nom :
               </label>
               <input
                 className="input bg-white border border-gray-500 text-black placeholder-gray-500 w-full p-2 mt-1"
                 type="text"
-                id="userlastname"
-                name="userlastname"
+                id="lastName"
+                name="lastName"
                 placeholder="Saisissez votre nom"
-                {...register(" userlastname", {
+                {...register("lastName", {
                   required: "Ce champ est requis !",
                   minLength: {
                     value: 2,
@@ -78,10 +88,10 @@ function RegisterPage() {
                   },
                 })}
               />
-              {errors?.userlastname && (
+              {errors?.lastName && (
                 <span className="text-red-500 text-center">
                   {" "}
-                  {errors.userlastname.message}{" "}
+                  {errors.lastName.message}{" "}
                 </span>
               )}
             </div>
@@ -165,7 +175,6 @@ function RegisterPage() {
                 </span>
               )}
             </div>
-
             <button
               type="submit"
               className="btn bg-GreenComp text-white w-full p-2 mt-3 hover:bg-gray-600"
@@ -183,12 +192,13 @@ function RegisterPage() {
           </form>
           <p className="text-sm mt-2">
             Déjà inscrit ?
-            <button
+            <Link
+              to="/connexion"
               type="button"
               className="text-blue-400 underline hover:text-blue-300"
             >
               Connexion
-            </button>
+            </Link>
           </p>
         </div>
       </div>
