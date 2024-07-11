@@ -13,10 +13,29 @@ class CarSeeder extends AbstractSeeder {
         brand: car.brand,
         model: car.model,
         image: car.image,
-        socket_type: car.socket_type, 
+        socket_type: car.socket_type,
         refName: `car_${index + 1}`,
       });
     });
+  }
+
+  // Méthode pour ajouter une nouvelle voiture manuellement
+  async addCarManually(data) {
+    try {
+      const insertedCar = await this.insert({
+        brand: data.brand,
+        model: data.model,
+        image: data.image,
+        socket_type: data.socket_type,
+        refName: `manual_car_${Date.now()}`, // Générer une référence unique
+      });
+
+      console.info("Car added manually:", insertedCar);
+      return insertedCar;
+    } catch (error) {
+      console.error("Error adding car manually:", error);
+      throw error;
+    }
   }
 }
 

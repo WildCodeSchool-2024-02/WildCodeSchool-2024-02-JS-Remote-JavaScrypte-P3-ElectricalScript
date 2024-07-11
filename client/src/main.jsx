@@ -13,6 +13,7 @@ import RegisterCarPage from "./pages/RegisterCarPage";
 import MapPage from "./pages/MapPage";
 import AdminPage from "./pages/AdminPage";
 import ContactPage from "./pages/ContactPage";
+import Cars from "./components/admin/Cars";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/cars",
+        element: <Cars />,
       },
     ],
   },
