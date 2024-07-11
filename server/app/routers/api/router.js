@@ -27,6 +27,10 @@ router.use("/station", stationRouter);
 const reservationRouter = require("./reservation/router");
 
 router.use("/reservation", reservationRouter);
+
+const authentificationRouter = require("./auth/router");
+
+router.use("/auth", authentificationRouter);
 /* ************************************************************************* */
 
 module.exports = router;

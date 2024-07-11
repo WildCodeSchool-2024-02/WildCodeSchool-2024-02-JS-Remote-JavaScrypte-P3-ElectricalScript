@@ -4,8 +4,9 @@ const express = require("express");
 
 const app = express();
 
+const CookieParser = require("cookie-parser");
 // Configure it
-
+app.use(CookieParser());
 /* ************************************************************************* */
 
 // CORS Handling: Why is the current code commented out and do I need to define specific allowed origins for my project?
@@ -25,7 +26,6 @@ const app = express();
 // 4. Be sure to only have URLs in the array with domains from which you want to allow requests.
 // For example: ["http://mysite.com", "http://another-domain.com"]
 
-
 const cors = require("cors");
 
 app.use(
@@ -34,10 +34,10 @@ app.use(
       process.env.CLIENT_URL, // keep this one, after checking the value in `server/.env`
       "http://mysite.com",
       "http://another-domain.com",
-    ]
+    ],
+    credentials: true,
   })
 );
-
 
 /* ************************************************************************* */
 
