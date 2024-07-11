@@ -23,11 +23,7 @@ function RegisterPage() {
     setDisplaySecondButton(true);
     reset();
     try {
-      const response = await axios.post(
-        "http://localhost:3310/api/users/",
-        data
-      );
-      console.info(response.data.message);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/users`, data);
     } catch (e) {
       console.error(e.response.data);
     }
