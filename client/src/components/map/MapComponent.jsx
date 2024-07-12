@@ -96,7 +96,7 @@ export default function MapComponent() {
 
                   <img
                     className="object-cover  w-full h-10 mt-2"
-                    src="https://www.groupe-grim.com/ford/wp-content/uploads/2022/06/borne-recharge.jpg"
+                    src="/static/image/borneimg.jpg"
                     alt="Station de recharge"
                   />
 

@@ -48,7 +48,7 @@ export default function ReservationPage() {
         <div className="overflow-hidden bg-gray-900 lg:shadow-md lg:rounded-xl">
           <img
             className="w-full object-cover"
-            src="https://www.groupe-grim.com/ford/wp-content/uploads/2022/06/borne-recharge.jpg"
+            src="/static/image/borneimg.jpg"
             alt="borne de recharge"
           />
         </div>
