@@ -10,7 +10,7 @@ const login = async (req, res) => {
 
   if (!user) {
     return res.status(404).json({
-      message: "combinaison invalide",
+      message: "Le couple email/mot de passe est incorrect",
     });
   }
 
@@ -18,13 +18,14 @@ const login = async (req, res) => {
 
   if (!isAllowed) {
     return res.status(404).json({
-      message: "combinaison invalide",
+      message: "Le couple email/mot de passe est incorrect",
     });
   }
 
   delete user.password;
 
-  const token = encodeJWT(user);
+  const token = await encodeJWT(user);
+
   return res
     .status(200)
     .cookie("auth_token", token, {
@@ -42,19 +43,20 @@ const logout = (req, res) => {
   res.clearCookie("auth_token").sendStatus(200);
 };
 
-const checkAuth = (res, req) => {
+const checkAuth = async (req, res) => {
   const token = req.cookies?.auth_token;
   if (!token) {
     return res.status(403).json(null);
   }
   try {
-    const validToken = decodeJWT(token);
+    const validToken = await decodeJWT(token);
+
     return res
       .status(200)
       .cookie("auth_token", token, {
         secure: false,
         httpOnly: true,
-        maxAge: 3600000,
+        maxAge: 24 * 60 * 60 * 1000,
       })
       .json({ user: validToken });
   } catch (e) {
