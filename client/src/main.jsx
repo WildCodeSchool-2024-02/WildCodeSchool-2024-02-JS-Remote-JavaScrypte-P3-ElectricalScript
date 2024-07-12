@@ -10,6 +10,7 @@ import LandingPage from "./pages/LandingPage";
 import RegisterPage from "./pages/RegisterPage";
 import ConnexionPage from "./pages/ConnexionPage";
 import RegisterCarPage from "./pages/RegisterCarPage";
+import ReservationPage from "./pages/ReservationPage";
 import MapPage from "./pages/MapPage";
 import ContactPage from "./pages/ContactPage";
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/registerCar",
         element: <RegisterCarPage />,
+      },
+      {
+        path: "/reservation/:name",
+        element: <ReservationPage />,
       },
       {
         path: "/contact",
