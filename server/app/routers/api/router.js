@@ -24,10 +24,6 @@ const stationRouter = require("./station/router");
 
 router.use("/station", stationRouter);
 
-const chargingPointRouter = require("./chargingpoint/router");
-
-router.use("/chargingpoint", chargingPointRouter);
-
 const reservationRouter = require("./reservation/router");
 
 router.use("/reservation", reservationRouter);
