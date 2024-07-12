@@ -20,6 +20,7 @@ export default function ConnexionPage() {
     formState: { errors },
   } = useForm();
   console.info(errors);
+
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
