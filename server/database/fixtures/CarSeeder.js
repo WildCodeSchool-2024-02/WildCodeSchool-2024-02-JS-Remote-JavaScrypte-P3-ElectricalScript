@@ -12,8 +12,8 @@ class CarSeeder extends AbstractSeeder {
       this.insert({
         brand: car.brand,
         model: car.model,
+        socket_type: car.socket_type,
         image: car.image,
-        socket_type: car.socket_type, 
         refName: `car_${index + 1}`,
       });
     });
