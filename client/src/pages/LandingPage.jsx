@@ -6,7 +6,7 @@ import icoinscription from "../assets/images/icone inscription.png";
 
 export default function LandingPage() {
   return (
-    <div className="bg-gray-700 h-screen">
+    <div className="bg-black h-screen">
       <div className="pt-12">
         <img src={logo} alt="Logo" className="rounded-full h-44 w-44 mx-auto" />
         <p className="mt-10 ml-8 text-xl font-main text-white lg:text-center">
@@ -24,7 +24,7 @@ export default function LandingPage() {
           <img src={icocarte} alt="icone carte" className="h-8 w-8" />
         </button>
       </Link>
-      <div className="mt-8 flex lg:justify-center lg:gap-32 lg:mt-20">
+      <div className="mt-8 flex justify-evenly lg:justify-center lg:gap-32 lg:mt-20">
         <Link to="/register">
           <button
             type="button"

@@ -1,10 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Link } from "react-router-dom";
+import Typewriter from "typewriter-effect";
 import logo from "../assets/images/Logo.png";
 import iconevoiture from "../assets/images/voiture-electrique.png";
 
 export default function HomePage() {
   return (
-    <div className="bg-gray-700 h-screen">
+    <div className="bg-black h-screen">
       <div className="pt-12">
         <img
           src={logo}
@@ -15,7 +17,16 @@ export default function HomePage() {
           Bienvenue sur <span className="text-GreenBlue">géocode</span>
         </h1>
         <p className="pt-5 ml-10 text-xl font-paraph text-white lg:text-center">
-          Votre solution de recharge éléctrique proche de chez vous
+          <Typewriter
+            options={{
+              strings: [
+                "Votre solution de recharge éléctrique proche de chez vous",
+              ],
+              autoStart: true,
+              loop: true,
+              pauseFor: 5000,
+            }}
+          />
         </p>
       </div>
 
