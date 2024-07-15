@@ -1,6 +1,6 @@
 CREATE TABLE role (
     role_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    role VARCHAR(80)
+    role VARCHAR(80) DEFAULT "user"
 );
 
 CREATE TABLE station (
@@ -56,3 +56,4 @@ CREATE TABLE reservation (
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+

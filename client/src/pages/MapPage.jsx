@@ -1,5 +1,13 @@
+import { Link } from "react-router-dom";
 import MapComponent from "../components/map/MapComponent";
 
 export default function MapPage() {
-  return <MapComponent />;
+  return (
+    <div>
+      <Link to="/registerCar" className="text-white">
+        GOGOGO
+      </Link>
+      <MapComponent />;
+    </div>
+  );
 }

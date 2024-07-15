@@ -12,6 +12,7 @@ const {
   readAll,
   readOneById,
   update,
+  updateCar,
   destroy,
 } = require("../../../controllers/usersActions");
 
@@ -27,6 +28,8 @@ router.get("/", readAll);
 router.get("/:id", readOneById);
 // Route to update a specific user by ID
 router.put("/:id", validateUserSchema, hashPassword, update);
+// Route to update only the carId of the user
+router.put("/car", updateCar);
 // Route to delete a specific user by ID
 router.delete("/:id", destroy);
 /* ************************************************************************* */

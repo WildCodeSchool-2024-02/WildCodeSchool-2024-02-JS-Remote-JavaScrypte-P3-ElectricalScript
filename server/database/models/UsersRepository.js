@@ -40,6 +40,15 @@ class UsersRepository extends AbstractRepository {
     return result.affectedRows > 0;
   }
 
+  async updateCar(user) {
+    const { carTypeId, userId } = user;
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET car_type_id = ? WHERE user_id = ?`,
+      [carTypeId, userId]
+    );
+    return result.affectedRows > 0;
+  }
+
   async destroy(id) {
     const [result] = await this.database.query(
       `DELETE FROM ${this.table} WHERE user_id = ?`,
@@ -50,7 +59,7 @@ class UsersRepository extends AbstractRepository {
 
   async findUserByEmail(email) {
     const [result] = await this.database.query(
-      `SELECT first_name, password FROM ${this.table} WHERE email = ?`,
+      `SELECT user_id, first_name, password FROM ${this.table} WHERE email = ?`,
       [email]
     );
     return result;
