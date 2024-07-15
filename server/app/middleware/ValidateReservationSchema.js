@@ -7,15 +7,11 @@ const reservationSchema = z.object({
   price: z.number({
     invalid_type_error: "Votre prix doit être indiqué par un chiffre",
   }),
-  startDate: z.string().date({
+  startAt: z.string({
     invalid_type_error: "Vous devez indiquer une date au bon format",
   }),
-  endDate: z.string().date({
+  endAt: z.string({
     invalid_type_error: "Vous devez indiquer une date au bon format",
-  }),
-  chargingPointId: z.number().int({
-    invalid_type_error:
-      "vous devez utiliser un nombre ou cette station n'existe pas",
   }),
   userId: z.number({
     invalid_type_error:
@@ -24,15 +20,13 @@ const reservationSchema = z.object({
 });
 
 const validateReservationSchema = (req, res, next) => {
-  const { status, price, startDate, endDate, chargingPointId, userId } =
-    req.body;
+  const { status, price, startAt, endAt, userId } = req.body;
 
   const validate = reservationSchema.safeParse({
     status,
     price,
-    startDate,
-    endDate,
-    chargingPointId,
+    startAt,
+    endAt,
     userId,
   });
 

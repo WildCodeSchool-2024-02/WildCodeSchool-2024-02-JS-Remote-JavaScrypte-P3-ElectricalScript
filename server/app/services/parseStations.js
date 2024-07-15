@@ -4,7 +4,13 @@ const path = require("path");
 
 const parseStations = () => {
   const results = [];
-  const filePath = path.join(__dirname, "..", "..", "uploads", "bornes-irve.csv");
+  const filePath = path.join(
+    __dirname,
+    "..",
+    "..",
+    "uploads",
+    "bornes-irve.csv"
+  );
 
   return new Promise((resolve, reject) => {
     fs.createReadStream(filePath)
@@ -16,19 +22,25 @@ const parseStations = () => {
           address: data.ad_station,
           latitude: parseFloat(data.ylatitude),
           longitude: parseFloat(data.xlongitude),
-          point_number: parseInt(data.nbre_pdc, 10),
           position: parseFloat(data.geo_point_borne),
           socket_type: data.type_prise,
           power: parseFloat(data.puiss_max),
           accessibility: data.accessibilite,
-          postal_code: data.code_insee_commune
+          postal_code: data.code_insee_commune,
         };
 
         results.push(renameData);
       })
       .on("end", () => {
-        // inserer les resultats dans un fichier 
-        const jsonFilePath = path.join(__dirname, "..", "..", "database", "data", "stationsinf.json");
+        // inserer les resultats dans un fichier
+        const jsonFilePath = path.join(
+          __dirname,
+          "..",
+          "..",
+          "database",
+          "data",
+          "stationsinf.json"
+        );
         fs.writeFile(jsonFilePath, JSON.stringify(results, null, 2), (err) => {
           if (err) {
             reject(err);
