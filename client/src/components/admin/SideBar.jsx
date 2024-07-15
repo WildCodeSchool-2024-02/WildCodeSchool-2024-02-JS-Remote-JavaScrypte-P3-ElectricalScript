@@ -17,7 +17,6 @@ function SideBar() {
               />
             </div>
           </div>
-
           <div className="flex items-center space-x-2">
             <NavLink to="/cars" className="w-full">
               <button
@@ -27,19 +26,17 @@ function SideBar() {
                 Voitures
               </button>
             </NavLink>
-          </div>
-
-          
+          </div> 
           <div className="flex items-center space-x-2">
-            <button
-              type="button"
-              className="rounded-lg border border-white py-2 px-4 "
-            >
-              Utilisateurs
-            </button>
-          </div>
-
-          
+            <NavLink to="/registeredusers" className="w-full">
+              <button
+                type="button"
+                className="w-full rounded-lg border border-white py-2 px-4"
+              >
+                Utilisateurs
+              </button>
+            </NavLink>
+          </div> 
           <div className="flex items-center space-x-2">
             <NavLink to="/admin" className="w-full">
               <button
@@ -50,17 +47,16 @@ function SideBar() {
               </button>
             </NavLink>
           </div>
-
-        
           <div className="flex items-center space-x-2">
-            <button
-              type="button"
-              className="rounded-lg border border-white py-2 px-4 "
-            >
-              Stations
-            </button>
+            <NavLink to="/stations" className="w-full">
+              <button
+                type="button"
+                className="w-full rounded-lg border border-white py-2 px-4"
+              >
+                Stations
+              </button>
+            </NavLink>
           </div>
-
           <img src={logo} alt="logo geocode" className="rounded-full w-20 h-20" />
         </div>
       </div>

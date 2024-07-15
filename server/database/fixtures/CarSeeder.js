@@ -12,23 +12,11 @@ class CarSeeder extends AbstractSeeder {
       this.insert({
         brand: car.brand,
         model: car.model,
-        image: car.image,
         socket_type: car.socket_type,
+        image: car.image,
         refName: `car_${index + 1}`,
       });
     });
-  }
-
-  async addCarManually(data) {
-    const insertedCar = await this.insert({
-      brand: data.brand,
-      model: data.model,
-      image: data.image,
-      socket_type: data.socket_type,
-      refName: `manual_car_${Date.now()}`,
-    });
-
-    return insertedCar;
   }
 }
 
