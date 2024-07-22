@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,12 +9,20 @@ function RegisterCarPage() {
   const [selectedCarIndex, setSelectedCarIndex] = useState(null);
   const [showValidateButton, setShowValidateButton] = useState(false);
   const { currentUser } = useOutletContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/car")
-      .then((response) => response.json())
-      .then((data) => setCars(data))
-      .catch((error) => console.error("Error fetching cars data:", error));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/car`
+        );
+        setCars(response.data);
+      } catch (e) {
+        console.error("error", e);
+      }
+    };
+    fetchData();
   }, []);
 
   const submit = async () => {
@@ -33,28 +41,19 @@ function RegisterCarPage() {
         }
       );
       console.info(response.data);
+      toast.success("votre véhicule à été modifier");
+      navigate("/profil");
     } catch (e) {
       console.error(e.response.data);
     }
   };
 
-  // Apparition du bouton valider après avoi selectionné la car
   const handleSelectCar = (index) => {
     setSelectedCarIndex(index);
     setShowValidateButton(true);
     console.info(`Car selected with index: ${index}`);
   };
 
-  // le toastify après validation du choix de car
-  const handleValidate = () => {
-    toast.success("Votre inscription est finalisée !");
-    setShowValidateButton(false);
-  };
-
-  const handleAll = () => {
-    submit();
-    handleValidate();
-  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-black">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
@@ -98,7 +97,7 @@ function RegisterCarPage() {
           <button
             type="submit"
             className="select-none rounded-lg bg-yellow-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-black shadow-md shadow-amber-500/20 transition-all hover:shadow-lg hover:shadow-amber-500/40 focus:opacity-85 focus:shadow-none active:opacity-85 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none hover:bg-amber-600  animate-slide-up"
-            onClick={handleAll}
+            onClick={submit()}
           >
             Valider
           </button>
