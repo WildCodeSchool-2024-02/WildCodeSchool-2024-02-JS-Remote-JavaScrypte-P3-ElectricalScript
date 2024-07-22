@@ -3,12 +3,14 @@ import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import avatar from "../assets/images/avatar.png";
+
 import LoadingComponent from "../components/map/LoadingComponent";
 
 export default function UserProfilPage() {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState();
   const { currentUser } = useOutletContext();
   const [loading, setLoading] = useState(true);
+  const [reservations, setReservations] = useState([]);
   const navigate = useNavigate();
 
   const fetchUserData = async (userId) => {
@@ -21,6 +23,25 @@ export default function UserProfilPage() {
       console.error("utilisateur non existant", e);
     }
   };
+
+  const fetchReservation = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/reservation/`,
+        {
+          params: { userId: currentUser.user_id },
+        }
+      );
+      setReservations(
+        response.data.filter(
+          (reservation) => reservation.user_id === currentUser.user_id
+        )
+      );
+    } catch (e) {
+      console.error("reservation non exisante", e);
+    }
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -28,8 +49,9 @@ export default function UserProfilPage() {
         navigate("/connexion");
       } else {
         fetchUserData(currentUser.user_id);
+        fetchReservation();
       }
-    }, 200);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [currentUser, navigate]);
@@ -57,9 +79,9 @@ export default function UserProfilPage() {
         </div>
       </div>
       {/*  */}
-      <div className="flex flex-col items-center mt-4 gap-6 md:flex-row md:justify-around">
+      <div className="flex items-center mt-4 gap-6 md:flex-row md:justify-around">
         <div className="flex flex-col gap-4 ">
-          <h1 className=" text-white md:text-2xl">Votre véhicule:</h1>
+          <h1 className=" text-white md:text-2xl">Votre véhicule :</h1>
           <div className="flex justify-end text-white bg-neutral-700 rounded-lg p-4">
             <img src={userInfo?.image} alt="" className="w-26 h-20" />
             <div>
@@ -82,14 +104,43 @@ export default function UserProfilPage() {
             +
           </Link>
         </div>
+
         <div className="flex flex-col gap-4 ">
           <h1 className=" text-white md:text-2xl">Vos réservations :</h1>
-          <div className="flex justify-center text-white bg-neutral-700 rounded-lg p-4">
-            Réservation
-          </div>
+          {userInfo?.start_at || userInfo?.end_at !== null ? (
+            reservations.map((reservation) => (
+              <div
+                className="flex justify-center text-white bg-neutral-700 rounded-lg p-4 gap-4"
+                key={reservation.reservation_id}
+              >
+                <div className="flex flex-col">
+                  {" "}
+                  <p>
+                    <strong> Date de début : </strong>
+                    {new Date(reservation.start_at).toLocaleString()}
+                  </p>
+                  <p>
+                    <strong>Date de fin : </strong>{" "}
+                    {new Date(reservation.end_at).toLocaleString()}
+                  </p>
+                  <p>
+                    <strong>Status : </strong>
+                    {reservation.status}{" "}
+                  </p>
+                  <p>
+                    {" "}
+                    <strong>Prix : </strong>
+                    {reservation.price} €{" "}
+                  </p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>Vous n'avez pas de réservation</p>
+          )}
           <Link
-            to="/reservation"
-            className="text-white text-xl bg-GreenComp w-fit px-2 border-solid border-2 border-white rounded-full"
+            to="/map"
+            className="text-white text-xl bg-GreenComp w-8 border-solid border-2 border-white rounded-full text-center"
           >
             +
           </Link>

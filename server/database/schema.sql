@@ -49,6 +49,13 @@ CREATE TABLE reservation (
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
+INSERT INTO role (role) VALUES 
+('Admin'),
+('User'),
+('Manager'),
+('Guest'),
+('Operator');
+
 CREATE TRIGGER before_users_insert
 BEFORE INSERT ON Users
 FOR EACH ROW
