@@ -38,7 +38,6 @@ export default function ReservationPage() {
         )
       );
     } catch (error) {
-      console.error("Erreur lors de la récupération des réservations :", error);
       toast.error("Erreur lors de la récupération des réservations.");
     }
   };
@@ -53,7 +52,6 @@ export default function ReservationPage() {
       );
       return response.data.isConflict;
     } catch (e) {
-      console.error(e);
       toast.error(
         "Erreur lors de la vérification de la disponibilité du créneau."
       );
