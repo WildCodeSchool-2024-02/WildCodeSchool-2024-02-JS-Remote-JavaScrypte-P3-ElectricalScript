@@ -16,7 +16,7 @@ class UsersRepository extends AbstractRepository {
 
   async readAll() {
     const [rows] = await this.database.query(
-      `SELECT u.first_name, u.last_name, u.email, u.password, u.role_id, u.car_type_id, c.brand, c.model FROM ${this.table} AS u JOIN car_type AS c ON u.car_type_id = c.car_type_id `
+      `SELECT u.first_name, u.last_name, u.email, u.password, u.role_id, u.car_type_id, c.brand, c.model FROM ${this.table} AS u LEFT JOIN car_type AS c ON u.car_type_id = c.car_type_id `
     );
 
     return rows;
@@ -24,7 +24,7 @@ class UsersRepository extends AbstractRepository {
 
   async readOneById(id) {
     const [rows] = await this.database.query(
-      ` SELECT u.first_name, u.last_name, u.email, u.password, u.role_id, u.car_type_id, c.brand, c.model FROM ${this.table} AS u JOIN car_type AS c ON u.car_type_id = c.car_type_id WHERE u.user_id = ?`,
+      ` SELECT u.first_name, u.last_name, u.email, u.password, u.role_id, u.car_type_id, c.brand, c.model FROM ${this.table} AS u LEFT JOIN car_type AS c ON u.car_type_id = c.car_type_id WHERE u.user_id = ?`,
       [id]
     );
     return rows[0];
