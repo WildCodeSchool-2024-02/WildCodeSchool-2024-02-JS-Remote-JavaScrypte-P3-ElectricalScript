@@ -15,6 +15,7 @@ import AdminPage from "./pages/AdminPage";
 import ContactPage from "./pages/ContactPage";
 import Cars from "./components/admin/Cars";
 import Stations from "./components/admin/Stations";
+import RegisteredUsers from "./components/admin/RegisteredUsers";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/stations",
         element: <Stations/>,
+      },
+      {
+        path: "/registeredusers",
+        element: <RegisteredUsers/>,
       },
     ],
   },
