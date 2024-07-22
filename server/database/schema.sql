@@ -1,7 +1,7 @@
 -- SQLBook: Code
 CREATE TABLE role (
     role_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    role VARCHAR(80) DEFAULT "User"
+    role VARCHAR(80)
 );
 
 CREATE TABLE station (
@@ -48,6 +48,9 @@ CREATE TABLE reservation (
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
+
+
+
 -- Insérer des données dans la table role
 INSERT INTO role (role) VALUES 
 ('Admin'),
@@ -74,11 +77,12 @@ INSERT INTO car_type (brand, model, socket_type, image) VALUES
 
 -- Insérer des données dans la table users
 INSERT INTO users (first_name, last_name, email, password, role_id, car_type_id) VALUES 
-('John', 'Doe', 'john.doe@example.com', 'password123', 1, 1),
+('John', 'Doe', 'john.doe@example.com', 'password123', 2, 1),
 ('Jane', 'Smith', 'jane.smith@example.com', 'password123', 2, 2),
-('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', 3, 3),
-('Bob', 'Brown', 'bob.brown@example.com', 'password123', 4, 4),
-('Charlie', 'Davis', 'charlie.davis@example.com', 'password123', 5, 5);
+('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', 2, 3),
+('Bob', 'Brown', 'bob.brown@example.com', 'password123', 2, 4),
+('Charlie', 'Davis', 'charlie.davis@example.com', 'password123', 2, 5),
+('Admin', 'Admin', 'admin@gmail.com', 'Majv123147k!', 1,2);
 
 -- Insérer des données dans la table reservation
 INSERT INTO reservation (status, price, start_at, end_at, user_id) VALUES 
@@ -87,3 +91,13 @@ INSERT INTO reservation (status, price, start_at, end_at, user_id) VALUES
 ('Cancelled', 25.0, '2024-07-13 10:00:00', '2024-07-13 12:00:00', 3),
 ('Completed', 30.0, '2024-07-14 11:00:00', '2024-07-14 13:00:00', 4),
 ('Confirmed', 35.0, '2024-07-15 12:00:00', '2024-07-15 14:00:00', 5);
+
+
+CREATE TRIGGER before_users_insert
+BEFORE INSERT ON Users
+FOR EACH ROW
+BEGIN
+    IF NEW.role_id IS NULL THEN
+        SET NEW.role_id = (SELECT role_id FROM Role WHERE role = 'User');
+    END IF;
+END 
