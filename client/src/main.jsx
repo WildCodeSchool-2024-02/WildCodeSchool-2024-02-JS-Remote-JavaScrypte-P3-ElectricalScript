@@ -12,7 +12,11 @@ import ConnexionPage from "./pages/ConnexionPage";
 import RegisterCarPage from "./pages/RegisterCarPage";
 import ReservationPage from "./pages/ReservationPage";
 import MapPage from "./pages/MapPage";
+import AdminPage from "./pages/AdminPage";
 import ContactPage from "./pages/ContactPage";
+import Cars from "./components/admin/Cars";
+import Stations from "./components/admin/Stations";
+import RegisteredUsers from "./components/admin/RegisteredUsers";
 
 const router = createBrowserRouter([
   {
@@ -43,12 +47,28 @@ const router = createBrowserRouter([
         element: <RegisterCarPage />,
       },
       {
+        path: "/admin",
+        element: <AdminPage />,
+      },
+      {
         path: "/reservation/:name",
         element: <ReservationPage />,
       },
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/cars",
+        element: <Cars />,
+      },
+      {
+        path: "/stations",
+        element: <Stations />,
+      },
+      {
+        path: "/registeredusers",
+        element: <RegisteredUsers />,
       },
     ],
   },

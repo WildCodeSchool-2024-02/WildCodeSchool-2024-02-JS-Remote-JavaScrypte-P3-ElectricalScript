@@ -1,7 +1,6 @@
--- SQLBook: Code
 CREATE TABLE role (
     role_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    role VARCHAR(80) DEFAULT "User"
+    role VARCHAR(80)
 );
 
 CREATE TABLE station (
@@ -49,3 +48,12 @@ CREATE TABLE reservation (
     FOREIGN KEY (station_id) REFERENCES station (station_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
+CREATE TRIGGER before_users_insert
+BEFORE INSERT ON Users
+FOR EACH ROW
+BEGIN
+    IF NEW.role_id IS NULL THEN
+        SET NEW.role_id = (SELECT role_id FROM Role WHERE role = 'User');
+    END IF;
+END 

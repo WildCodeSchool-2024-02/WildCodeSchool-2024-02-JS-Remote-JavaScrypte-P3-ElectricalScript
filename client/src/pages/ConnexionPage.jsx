@@ -10,8 +10,11 @@ export default function ConnexionPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser?.role === "User") {
       navigate("/map");
+    }
+    if (currentUser?.role === "Admin") {
+      navigate("/admin");
     }
   }, [currentUser, navigate]);
   const {
