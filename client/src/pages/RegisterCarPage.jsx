@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,6 +8,7 @@ function RegisterCarPage() {
   const [cars, setCars] = useState([]);
   const [selectedCarIndex, setSelectedCarIndex] = useState(null);
   const [showValidateButton, setShowValidateButton] = useState(false);
+  const { currentUser } = useOutletContext();
 
   useEffect(() => {
     fetch("http://localhost:3310/api/car")
@@ -17,10 +19,14 @@ function RegisterCarPage() {
 
   const submit = async () => {
     try {
+      const carTypeId = cars[selectedCarIndex]?.car_type_id;
+      const userId = currentUser?.user_id;
+
       const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/users/car`,
+        `${import.meta.env.VITE_API_URL}/api/users`,
         {
-          carTypeId: cars[selectedCarIndex].id,
+          carTypeId,
+          userId,
         },
         {
           withCredentials: true,
@@ -75,6 +81,7 @@ function RegisterCarPage() {
               <p className="text-sm mb-2">{car.model}</p>
               <p className="text-sm">{car.type}</p>
               <p className="text-sm">Type de prise : {car.socket_type} 🔌 </p>
+              <p htmlFor="car_type_id">{car.car_type_id}</p>
               <button
                 type="button"
                 onClick={() => handleSelectCar(index)}

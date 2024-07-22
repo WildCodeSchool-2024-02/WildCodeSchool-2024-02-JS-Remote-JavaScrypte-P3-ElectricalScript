@@ -14,4 +14,5 @@ const fetchAuth = async () => {
     return null;
   }
 };
+
 export default fetchAuth;
