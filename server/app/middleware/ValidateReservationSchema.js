@@ -17,10 +17,14 @@ const reservationSchema = z.object({
     invalid_type_error:
       "vous devez utiliser un nombre ou l'utilisateur n'existe pas",
   }),
+  stationId: z.number({
+    invalid_type_error:
+      "vous devez utiliser un nombre ou la station n'existe pas",
+  }),
 });
 
 const validateReservationSchema = (req, res, next) => {
-  const { status, price, startAt, endAt, userId } = req.body;
+  const { status, price, startAt, endAt, userId, stationId } = req.body;
 
   const validate = reservationSchema.safeParse({
     status,
@@ -28,6 +32,7 @@ const validateReservationSchema = (req, res, next) => {
     startAt,
     endAt,
     userId,
+    stationId,
   });
 
   if (!validate.success) {

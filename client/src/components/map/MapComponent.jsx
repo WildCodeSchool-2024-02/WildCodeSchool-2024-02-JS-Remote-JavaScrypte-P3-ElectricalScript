@@ -107,11 +107,12 @@ export default function MapComponent() {
                         name: marker.name,
                         address: marker.address,
                         power: marker.power,
+                        station: marker.id,
                       }}
                     >
                       <button
                         type="button"
-                        className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-green-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none"
+                        className="px-2 py-1 text-xs text-white transition-colors duration-300 transform bg-green-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none"
                       >
                         Réserver
                       </button>

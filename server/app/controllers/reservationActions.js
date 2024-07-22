@@ -65,10 +65,28 @@ const destroy = async (req, res, next) => {
   }
 };
 
+const checkReservation = async (req, res) => {
+  const { stationId, startAt, endAt } = req.query;
+  try {
+    const isConflict = await tables.reservation.checkReservation(
+      stationId,
+      startAt,
+      endAt
+    );
+    res.json({ isConflict });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Erreur lors de la vérification de la disponibilité du créneau.",
+    });
+  }
+};
+
 module.exports = {
   create,
   readAll,
   readOneById,
   update,
   destroy,
+  checkReservation,
 };

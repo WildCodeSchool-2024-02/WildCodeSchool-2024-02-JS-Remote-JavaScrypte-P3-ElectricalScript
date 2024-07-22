@@ -13,10 +13,13 @@ const {
   readOneById,
   update,
   destroy,
+  checkReservation,
 } = require("../../../controllers/reservationActions");
 
 const validateReservationSchema = require("../../../middleware/ValidateReservationSchema");
 
+// Route to check if a reservation conflicts
+router.get("/check", checkReservation);
 // Route to add a new user
 router.post("/", validateReservationSchema, create);
 // Route to get a list of users

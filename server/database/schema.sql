@@ -45,6 +45,7 @@ CREATE TABLE reservation (
     start_at DATETIME NOT NULL,
     end_at DATETIME NOT NULL,
     user_id INT UNSIGNED NOT NULL,
+    station_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (station_id) REFERENCES station (station_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
