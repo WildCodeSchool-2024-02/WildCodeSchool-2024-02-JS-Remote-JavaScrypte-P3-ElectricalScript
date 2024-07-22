@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import axios from "axios";
 import L from "leaflet";
-import SearchField from "./SearchField";
 
+import SearchField from "./SearchField";
 import LocationMarker from "./LocationMarker";
 import LoadingComponent from "../LoadingComponent";
 
@@ -44,6 +45,8 @@ export default function MapComponent() {
             id: station.station_id,
             position: [station.latitude, station.longitude],
             name: station.name,
+            address: station.address,
+            power: station.power,
           }))
         );
       } catch (error) {
@@ -61,6 +64,7 @@ export default function MapComponent() {
       </div>
     );
   }
+
   return (
     <div className="h-screen">
       <MapContainer
@@ -79,7 +83,43 @@ export default function MapComponent() {
         >
           {markers.map((marker) => (
             <Marker key={marker.id} position={marker.position} icon={greenIcon}>
-              <Popup>{marker.name}</Popup>
+              <Popup>
+                <div className="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                  <div className="px-4 py-2">
+                    <h1 className="text-base text-gray-800 uppercase dark:text-white">
+                      {marker.name}
+                    </h1>
+                    <p className="mt-1 text-xs text-gray-400">
+                      {marker.address}
+                    </p>
+                  </div>
+
+                  <img
+                    className="object-cover  w-full h-10 mt-2"
+                    src="/static/image/borneimg.jpg"
+                    alt="Station de recharge"
+                  />
+
+                  <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
+                    <Link
+                      to={`/reservation/${marker.name}`}
+                      state={{
+                        name: marker.name,
+                        address: marker.address,
+                        power: marker.power,
+                        station: marker.id,
+                      }}
+                    >
+                      <button
+                        type="button"
+                        className="px-2 py-1 text-xs text-white transition-colors duration-300 transform bg-green-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none"
+                      >
+                        Réserver
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </Popup>
             </Marker>
           ))}
         </MarkerClusterGroup>

@@ -10,11 +10,13 @@ import LandingPage from "./pages/LandingPage";
 import RegisterPage from "./pages/RegisterPage";
 import ConnexionPage from "./pages/ConnexionPage";
 import RegisterCarPage from "./pages/RegisterCarPage";
+import ReservationPage from "./pages/ReservationPage";
 import MapPage from "./pages/MapPage";
 import AdminPage from "./pages/AdminPage";
 import ContactPage from "./pages/ContactPage";
 import Cars from "./components/admin/Cars";
 import Stations from "./components/admin/Stations";
+import RegisteredUsers from "./components/admin/RegisteredUsers";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +48,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <AdminPage/>,
+        element: <AdminPage />,
+      },
+      {
+        path: "/reservation/:name",
+        element: <ReservationPage />,
       },
       {
         path: "/contact",
@@ -58,7 +64,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/stations",
-        element: <Stations/>,
+        element: <Stations />,
+      },
+      {
+        path: "/registeredusers",
+        element: <RegisteredUsers />,
       },
     ],
   },
