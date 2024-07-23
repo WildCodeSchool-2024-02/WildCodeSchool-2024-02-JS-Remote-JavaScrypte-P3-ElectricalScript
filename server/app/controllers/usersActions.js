@@ -51,6 +51,27 @@ const update = async (req, res, next) => {
   }
 };
 
+const updateCar = async (req, res, next) => {
+  const { carTypeId, userId } = req.body;
+
+  if (!carTypeId) {
+    res.status(400).json({ message: "carTypeId est requis" });
+  }
+
+  try {
+    const updated = await tables.users.updateCar({
+      carTypeId,
+      userId,
+    });
+    if (updated) {
+      res.sendStatus(204);
+    } else {
+      res.status(404).json({ message: "carTypeId is request" });
+    }
+  } catch (e) {
+    next(e);
+  }
+};
 const destroy = async (req, res, next) => {
   try {
     const destroyed = await tables.users.destroy(req.params.id);
@@ -70,5 +91,6 @@ module.exports = {
   readAll,
   readOneById,
   update,
+  updateCar,
   destroy,
 };

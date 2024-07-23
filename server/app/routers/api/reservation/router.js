@@ -30,6 +30,7 @@ router.get("/:id", readOneById);
 router.put("/:id", validateReservationSchema, update);
 // Route to delete a specific user by ID
 router.delete("/:id", destroy);
+
 /* ************************************************************************* */
 
 module.exports = router;
