@@ -1,6 +1,8 @@
-
+import { useOutletContext, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import SideBar from "../components/admin/SideBar";
 import AnimatedNumber from "../components/admin/AnimatedNumber";
+import LoadingComponent from "../components/map/LoadingComponent";
 
 const adminData = [
   { id: 1, title: "Utilisateurs connectés", value: 26 },
@@ -12,8 +14,24 @@ const adminData = [
 ];
 
 function AdminPage() {
- 
+  const { currentUser } = useOutletContext();
+  const { loading, setLoading } = useState(true);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+      if (currentUser?.role !== "Admin") {
+        navigate("/map");
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  });
+
+  if (loading) {
+    return <LoadingComponent />;
+  }
   return (
     <div className="bg-black min-h-screen flex text-white">
       <SideBar />
@@ -38,6 +56,3 @@ function AdminPage() {
 }
 
 export default AdminPage;
-
-
-
