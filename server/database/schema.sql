@@ -1,7 +1,6 @@
 CREATE TABLE role (
     role_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     role VARCHAR(80)
-    role VARCHAR(80)
 );
 
 CREATE TABLE station (
@@ -49,6 +48,10 @@ CREATE TABLE reservation (
     FOREIGN KEY (station_id) REFERENCES station (station_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
+INSERT INTO role (role) VALUES 
+('Admin'),
+('User');
 
 CREATE TRIGGER before_users_insert
 BEFORE INSERT ON Users
