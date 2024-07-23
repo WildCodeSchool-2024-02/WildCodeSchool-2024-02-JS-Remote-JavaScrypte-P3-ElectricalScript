@@ -1,4 +1,5 @@
 import { ListFilter, ArrowUpDown, Send, User } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -11,16 +12,18 @@ export default function Navbar() {
           </li>
           <li className="flex flex-col items-center">
             <ArrowUpDown color="#ffffff" size={20} strokeWidth={1} />
-
             <span className="text-white mt-2 font-paraph">Itinéraire</span>
           </li>
           <li className="flex flex-col items-center">
             <Send color="#ffffff" size={20} strokeWidth={1} />
             <span className="text-white mt-2 font-paraph">Carte</span>
           </li>
+
           <li className="flex flex-col items-center">
             <User color="#ffffff" size={20} strokeWidth={1} />
-            <span className="text-white mt-2 font-paraph">Profil</span>
+            <Link to="/userProfil">
+              <span className="text-white mt-2 font-paraph">Profil</span>
+            </Link>
           </li>
         </ul>
       </div>

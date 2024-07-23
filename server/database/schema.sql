@@ -30,7 +30,7 @@ CREATE TABLE users (
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL, 
     role_id INT UNSIGNED,
     FOREIGN KEY (role_id) REFERENCES role (role_id),
     car_type_id INT UNSIGNED,
@@ -48,6 +48,13 @@ CREATE TABLE reservation (
     FOREIGN KEY (station_id) REFERENCES station (station_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
+INSERT INTO role (role) VALUES 
+('Admin'),
+('User'),
+('Manager'),
+('Guest'),
+('Operator');
 
 CREATE TRIGGER before_users_insert
 BEFORE INSERT ON Users
