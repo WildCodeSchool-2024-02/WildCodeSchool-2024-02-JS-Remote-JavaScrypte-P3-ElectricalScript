@@ -5,7 +5,7 @@ const checkExistingUser = async (req, res, next) => {
 
   try {
     const existingUser = await tables.users.findUser(email);
-    if (existingUser.email === email) {
+    if (existingUser) {
       res.status(400).json({ message: "Email déjà utilisé" });
     }
     next();
