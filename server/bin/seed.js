@@ -88,7 +88,17 @@ const seed = async () => {
       await doRun(queue);
     };
 
-    await doRun(sortedSeeders);
+    const [CarSeeder, ReservationSeeder, StationSeeders, UserSeeder] =
+      sortedSeeders;
+
+    const newSortedSeeders = [
+      UserSeeder,
+      CarSeeder,
+      StationSeeders,
+      ReservationSeeder,
+    ];
+
+    await doRun(newSortedSeeders);
 
     // Close the database connection
     database.end();

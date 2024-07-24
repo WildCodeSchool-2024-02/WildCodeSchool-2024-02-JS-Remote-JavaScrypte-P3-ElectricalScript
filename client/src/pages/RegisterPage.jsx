@@ -28,7 +28,7 @@ function RegisterPage() {
       if (
         e.response &&
         e.response.data &&
-        e.response.data.message === "Cet email est déjà utilisé"
+        e.response.data.message === "Email déjà utilisé"
       ) {
         toast.error("L'email est déjà utilisé");
       } else {
