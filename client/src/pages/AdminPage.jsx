@@ -1,3 +1,4 @@
+/* import { useOutletContext, useNavigate } from "react-router-dom"; */
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -10,6 +11,21 @@ function AdminPage() {
   const [totalCars, setTotalCars] = useState(null);
   const [totalUsers, setTotalUsers] = useState(null);
   const [totalStations, setTotalStations] = useState(null);
+
+  /*   const { currentUser } = useOutletContext();
+  const { loading, setLoading } = useState(true);
+  const navigate = useNavigate(); */
+
+  /*   useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+      if (currentUser?.role !== "Admin") {
+        navigate("/map");
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }); */
 
   useEffect(() => {
     const fetchTotalReservations = async () => {
