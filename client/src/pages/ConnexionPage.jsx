@@ -89,7 +89,7 @@ export default function ConnexionPage() {
           </label>
           <p className="text-white my-12 text-center">
             Si vous ne possédez pas de compte cliquez
-            <a href="/" className="text-GreenComp">
+            <a href="/register" className="text-GreenComp">
               <span> ici</span>
             </a>
           </p>

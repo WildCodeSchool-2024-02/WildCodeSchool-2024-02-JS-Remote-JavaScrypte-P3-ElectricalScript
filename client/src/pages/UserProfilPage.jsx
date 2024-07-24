@@ -60,12 +60,12 @@ export default function UserProfilPage() {
   }
 
   return (
-    <div className="h-screen mb-48 ">
+    <div className="bg-bg-geocode bg-cover bg-center min-h-screen">
       <div>
         <Navbar />
       </div>
       <div>
-        <div className=" flex flex-row bg-neutral-700 px-6 py-4 rounded-br-3xl w-fit">
+        <div className="flex flex-row bg-neutral-800 px-6 py-4 rounded-br-3xl w-fit">
           <img
             src={avatar}
             alt="avatar"
@@ -82,16 +82,16 @@ export default function UserProfilPage() {
         <button
           type="submit"
           onClick={() => handleLogout(setCurrentUser)}
-          className="text-white"
+          className=" ml-16 mt-4 px-4 py-2 bg-GreenComp text-white rounded-lg"
         >
           Se déconnecter
         </button>
       </div>
       {/*  */}
-      <div className="flex items-center mt-4 gap-6 md:flex-row md:justify-around">
-        <div className="flex flex-col gap-4 ">
+      <div className="flex items-center mt-16 gap-6 md:flex-row md:justify-around md:flex flex-col pb-36">
+        <div className="flex flex-col gap-4 p-8 ">
           <h1 className=" text-white md:text-2xl">Votre véhicule :</h1>
-          <div className="flex justify-end text-white bg-neutral-700 rounded-lg p-4">
+          <div className="flex justify-end text-white bg-neutral-800 rounded-lg p-4">
             <img src={userInfo?.image} alt="" className="w-26 h-20" />
             <div>
               <p>
@@ -108,18 +108,18 @@ export default function UserProfilPage() {
           </div>
           <Link
             to="/registerCar"
-            className="text-white text-xl bg-GreenComp w-8 border-solid border-2 border-white rounded-full text-center"
+            className="text-white text-xl bg-GreenComp border-solid border-2 border-white rounded-full text-center"
           >
-            +
+           Ajoutez votre véhicule
           </Link>
         </div>
 
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4">
           <h1 className=" text-white md:text-2xl">Vos réservations :</h1>
           {userInfo?.start_at || userInfo?.end_at !== null ? (
             reservations.map((reservation) => (
               <div
-                className="flex justify-center text-white bg-neutral-700 rounded-lg p-4 gap-4"
+                className="flex justify-center text-white bg-neutral-800 rounded-lg p-4 gap-4"
                 key={reservation.reservation_id}
               >
                 <div className="flex flex-col">
@@ -145,13 +145,13 @@ export default function UserProfilPage() {
               </div>
             ))
           ) : (
-            <p>Vous n'avez pas de réservation</p>
+            <p className="text-white"  >Vous n'avez pas de réservation</p>
           )}
           <Link
             to="/map"
-            className="text-white text-xl bg-GreenComp w-8 border-solid border-2 border-white rounded-full text-center"
+            className="text-white text-xl bg-GreenComp border-solid border-2 border-white rounded-full text-center"
           >
-            +
+            Ajoutez vos reservations
           </Link>
         </div>
       </div>
