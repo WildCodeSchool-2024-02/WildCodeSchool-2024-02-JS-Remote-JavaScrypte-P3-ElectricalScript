@@ -48,7 +48,7 @@ export default function ConnexionPage() {
   };
 
   return (
-    <main className="flex flex-col justify-center">
+    <main className="bg-bg-geocode bg-cover bg-center min-h-screen flex flex-col justify-center">
       <div className="flex m-auto">
         <img
           src={logo}
@@ -58,7 +58,7 @@ export default function ConnexionPage() {
       </div>
       <div>
         <form
-          className="flex items-center flex-col my-4"
+          className="flex items-center flex-col my-4 mb-8"
           onSubmit={handleSubmit(onSubmit)}
         >
           <label className="my-12" htmlFor="email">
@@ -107,7 +107,7 @@ export default function ConnexionPage() {
           </label>
           <p className="text-white my-12 text-center">
             Si vous ne possédez pas de compte cliquez
-            <a href="/" className="text-GreenComp">
+            <a href="/register" className="text-GreenComp">
               <span> ici</span>
             </a>
           </p>
