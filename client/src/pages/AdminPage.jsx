@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SideBar from "../components/admin/SideBar";
 import AnimatedNumber from "../components/admin/AnimatedNumber";
 import LoadingComponent from "../components/map/LoadingComponent";
+import NavbarDesktop from "../components/NavbarDesktop";
 
 const adminData = [
   { id: 1, title: "Utilisateurs connectés", value: 26 },
@@ -33,25 +34,28 @@ function AdminPage() {
     return <LoadingComponent />;
   }
   return (
-    <div className="bg-black min-h-screen flex text-white">
-      <SideBar />
-      <div className="flex-grow bg-black flex justify-center items-center pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {adminData.map((card) => (
-            <div
-              key={card.id}
-              className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
-              style={{ width: "200px", height: "200px" }}
-            >
-              <span className="text-lg font-bold">{card.title}</span>
-              <p className="text-2xl mt-2">
-                <AnimatedNumber value={card.value} />
-              </p>
-            </div>
-          ))}
+    <>
+      <NavbarDesktop />
+      <div className="bg-bg-geocode h-screen flex text-white">
+        <SideBar />
+        <div className="flex-grow bg-black flex justify-center items-center pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {adminData.map((card) => (
+              <div
+                key={card.id}
+                className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
+                style={{ width: "200px", height: "200px" }}
+              >
+                <span className="text-lg font-bold">{card.title}</span>
+                <p className="text-2xl mt-2">
+                  <AnimatedNumber value={card.value} />
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

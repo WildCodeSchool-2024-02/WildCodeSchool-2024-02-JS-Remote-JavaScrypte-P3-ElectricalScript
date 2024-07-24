@@ -1,10 +1,10 @@
-import NavbarDesktop from "../components/NavbarDesktop";
+import Navbar from "../components/Navbar";
 
 export default function LegaleNoticePage() {
   return (
     <>
-      <NavbarDesktop />
-      <div className="text-white py-12 px-40">
+      <Navbar />
+      <div className=" bg-bg-geocode text-white py-12 px-40 pb-32">
         <h1 className="text-4xl"> Conditions Générales d'Utilisation</h1>
         <br />
         <br />
