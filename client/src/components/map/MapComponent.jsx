@@ -15,7 +15,7 @@ import greenIconUrl from "../../assets/images/marker-icon-green.png";
 import greenIconRetinaUrl from "../../assets/images/marker-icon-2x-green.png";
 import shadowIcon from "../../assets/images/marker-shadow.png";
 
-import NavbarDesktop from "../NavbarDesktop";
+import Navbar from "../Navbar";
 
 export default function MapComponent() {
   const [markers, setMarkers] = useState([]);
@@ -69,8 +69,9 @@ export default function MapComponent() {
   }
 
   return (
-    <div className="h-screen">
-      <NavbarDesktop />
+    <div className="h-[80vh]">
+      <Navbar />
+
       <MapContainer
         center={[47.27387, 2.70264]}
         zoom={6}
@@ -88,7 +89,7 @@ export default function MapComponent() {
           {markers.map((marker) => (
             <Marker key={marker.id} position={marker.position} icon={greenIcon}>
               <Popup>
-                <div className="max-w-xs overflow-hidden rounded-lg shadow-lg bg-gray-800">
+                <div className="max-w-xs text-Alata overflow-hidden rounded-lg shadow-lg bg-gray-800">
                   <div className="px-4 py-2">
                     <h1 className="text-base uppercase text-white">
                       {marker.name}
@@ -99,7 +100,7 @@ export default function MapComponent() {
                   </div>
 
                   <img
-                    className="object-cover  w-full h-10 mt-2"
+                    className="object-cover  w-full h-16 mt-2"
                     src="/static/image/borneimg.jpg"
                     alt="Station de recharge"
                   />

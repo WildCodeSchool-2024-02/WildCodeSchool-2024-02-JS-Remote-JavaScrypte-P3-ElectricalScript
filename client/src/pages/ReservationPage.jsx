@@ -153,20 +153,24 @@ export default function ReservationPage() {
             {name && (
               <div className="mb-6">
                 <h2 className="text-center text-xl text-white p-4">{name}</h2>
-                <h2 className="text-center text-sm">{address}</h2>
-                <h2 className="text-center text-sm">Puissance: {power} kW</h2>
+                <h2 className="text-center text-sm text-neutral-400 ">
+                  {address}
+                </h2>
+                <h2 className="text-center text-sm text-neutral-400">
+                  Puissance: {power} kW
+                </h2>
               </div>
             )}
             <form
               onSubmit={handleSubmit(validateAndSubmit)}
               className="flex flex-col gap-4"
             >
-              <div>
+              <div className="text-center">
                 <label htmlFor="startAt" className="text-sm">
                   Début de la réservation :
                 </label>
                 <input
-                  className="input bg-green-600 text-white focus:border-none w-full p-2 mt-1 focus:ring-2 focus:ring-green-500"
+                  className="input bg-green-600 text-white focus:border-none w-60 p-2 mt-1 focus:ring-2 focus:ring-green-500"
                   type="datetime-local"
                   id="startAt"
                   name="startAt"
@@ -174,28 +178,28 @@ export default function ReservationPage() {
                     required: "Ce champ est requis !",
                   })}
                 />
-                <span
-                  className={`${errors.startAt ? "text-red-500" : "invisible"}`}
-                >
-                  {errors.startAt?.message}
-                </span>
+                {errors.startAt && (
+                  <span className="text-red-500 text-center max-w-48 flex justify-center">
+                    {errors.startAt?.message}
+                  </span>
+                )}
               </div>
-              <div>
+              <div className="text-center">
                 <label htmlFor="endAt" className="text-sm">
                   Fin de la réservation :
                 </label>
                 <input
-                  className="input bg-green-600 text-white focus:border-none w-full p-2 mt-1 focus:ring-2 focus:ring-green-500"
+                  className="input bg-green-600 text-white focus:border-none w-60 p-2 mt-1 focus:ring-2 focus:ring-green-500"
                   type="datetime-local"
                   id="endAt"
                   name="endAt"
                   {...register("endAt", { required: "Ce champ est requis !" })}
                 />
-                <span
-                  className={`${errors.endAt ? "text-red-500" : "invisible"}`}
-                >
-                  {errors.endAt?.message}
-                </span>
+                {errors.endAt && (
+                  <span className="text-red-500 text-center max-w-48 flex justify-center">
+                    {errors.endAt?.message}
+                  </span>
+                )}
               </div>
               <div className="flex justify-center">
                 <button
@@ -216,7 +220,10 @@ export default function ReservationPage() {
               <h3 className="text-center text-sm mb-4">Créneaux réservés :</h3>
               <ul>
                 {reservations.map((reservation) => (
-                  <li className="text-sm" key={reservation.reservation_id}>
+                  <li
+                    className="text-sm bg-teal-800 p-2 rounded-lg mb-2"
+                    key={reservation.reservation_id}
+                  >
                     {format(
                       new Date(reservation.start_at),
                       "yyyy-MM-dd HH:mm:ss"
