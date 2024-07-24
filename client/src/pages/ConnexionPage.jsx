@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../assets/images/Logo.png";
 
 export default function ConnexionPage() {
@@ -35,7 +36,11 @@ export default function ConnexionPage() {
       );
       setCurrentUser(response.data.user);
     } catch (e) {
-      console.error(e.response.data);
+      if (e.response && e.response.data && e.response.data.message) {
+        toast.error(e.response.data.message);
+      } else {
+        toast.error("Une erreur s'est produite");
+      }
     }
   };
 
