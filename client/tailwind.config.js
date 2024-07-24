@@ -18,6 +18,13 @@ module.exports = {
       boxShadow: {
         "3xl": "80px 80px 10px 0",
       },
+      borderRadius: {
+        'large': '90px', 
+        'srounded': '10px', 
+      },
+      backgroundImage: {
+        'bg-geocode': "url('/src/assets/images/bggeocode.png')",
+      }
     },
   },
   plugins: [daisyui],

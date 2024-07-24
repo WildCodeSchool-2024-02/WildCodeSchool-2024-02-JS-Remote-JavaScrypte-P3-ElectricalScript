@@ -19,18 +19,26 @@ function RegisterPage() {
   const onSubmit = async (data) => {
     const formData = { ...data };
     delete formData.confirmpassword;
-    toast.success("Votre inscritption est prise en compte!");
-    setDisplaySecondButton(true);
-    reset();
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/users`, data);
+      toast.success("Votre inscritption est prise en compte!");
+      setDisplaySecondButton(true);
+      reset();
     } catch (e) {
-      console.error(e.response.data);
+      if (
+        e.response &&
+        e.response.data &&
+        e.response.data.message === "Email déjà utilisé"
+      ) {
+        toast.error("L'email est déjà utilisé");
+      } else {
+        toast.error("Une erreur s'est produite lors de l'inscription");
+      }
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white">
+    <div className="bg-bg-geocode bg-cover bg-center min-h-screen flex items-center justify-center text-white">
       <div className="rounded-xl w-full max-w-md p-6">
         <div className="flex items-center justify-center mb-6">
           <img src={logo} alt="Logo" className="rounded-full w-20 h-20" />
@@ -178,15 +186,15 @@ function RegisterPage() {
               Inscription
             </button>
             <Link
-              to="/registerCar"
+              to="/connexion"
               type="button"
               disabled={!displaySecondButton}
               className={`btn w-full p-2 mt-3 ${displaySecondButton ? "bg-yellow-500 text-white  hover:bg-yellow-600" : "bg-gray-500 cursor-not-allowed"}`}
             >
-              Suivant
+              Connexion
             </Link>
           </form>
-          <p className="text-sm mt-2">
+          <p className="text-sm mt-4">
             Déjà inscrit ?
             <Link
               to="/connexion"

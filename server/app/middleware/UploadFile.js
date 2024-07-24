@@ -1,28 +1,32 @@
 const multer = require("multer");
-const fs = require("fs");
+const fs = require("fs").promises;
 
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "../../public/uploads" });
 
-const UploadFile =(req,res,next) => {
-
-    try {
-    upload.single("station")(req,res,(err) => {
-    if (err) {
-        throw err;
-    }
-    fs.rename(
-        `uploads/${req.file.filename}`,
-        `uploads/bornes-irve.csv`,
-        (error) => {
-          if (error) throw error;
-          res.status(201).json({ message: "Le fichier a bien été téléversé" });
+const UploadFile = async (req, res, next) => {
+  try {
+    await new Promise((resolve, reject) => {
+      upload.single("station")(req, res, (err) => {
+        if (err) {
+          return reject(err);
         }
-      );
-});
-    } catch (error) {
-        next(error);
-    }
-    };
-  
+        return resolve();
+      });
+    });
+
+    await fs.rename(
+      `../../public/uploads/${req.file.filename}`,
+      `../../public/uploads/bornes-irve.csv`,
+      (error) => {
+        if (error) throw error;
+        res.status(201).json({ message: "Le fichier a bien été téléversé" });
+      }
+    );
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = UploadFile;
-   

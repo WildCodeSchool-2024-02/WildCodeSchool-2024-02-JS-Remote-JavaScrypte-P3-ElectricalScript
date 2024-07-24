@@ -10,8 +10,16 @@ import LandingPage from "./pages/LandingPage";
 import RegisterPage from "./pages/RegisterPage";
 import ConnexionPage from "./pages/ConnexionPage";
 import RegisterCarPage from "./pages/RegisterCarPage";
+import ReservationPage from "./pages/ReservationPage";
 import MapPage from "./pages/MapPage";
 import ContactPage from "./pages/ContactPage";
+import Cars from "./components/admin/Cars";
+import Stations from "./components/admin/Stations";
+import UserProfilPage from "./pages/UserProfilPage";
+import RegisteredUsers from "./components/admin/RegisteredUsers";
+import AdminPage from "./pages/AdminPage";
+import NavbarDesktop from "./components/NavbarDesktop";
+import LegaleNoticePage from "./pages/LegaleNocitePage";
 
 const router = createBrowserRouter([
   {
@@ -42,8 +50,40 @@ const router = createBrowserRouter([
         element: <RegisterCarPage />,
       },
       {
+        path: "/admin",
+        element: <AdminPage />,
+      },
+      {
+        path: "/reservation/:name",
+        element: <ReservationPage />,
+      },
+      {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/cars",
+        element: <Cars />,
+      },
+      {
+        path: "/stations",
+        element: <Stations />,
+      },
+      {
+        path: "/profil",
+        element: <UserProfilPage />,
+      },
+      {
+        path: "/registeredusers",
+        element: <RegisteredUsers />,
+      },
+      {
+        path: "/navbarDesktop",
+        element: <NavbarDesktop />,
+      },
+      {
+        path: "/rgpd",
+        element: <LegaleNoticePage />,
       },
     ],
   },

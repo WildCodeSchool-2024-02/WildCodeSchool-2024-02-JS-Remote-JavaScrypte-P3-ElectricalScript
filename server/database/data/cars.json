@@ -1,139 +1,137 @@
 [
   {
-      "car_type_id": 1,
+      
       "brand": "Tesla",
       "model": "Model S",
       "socket_type": "CCS-CHADEMO",
       "image": "https://cdn.prod.website-files.com/60ce1b7dd21cd517bb39ff20/6165fd676b85a3351aa119e5_tesla_model-s.png"
   },
   {
-      "car_type_id": 2,
+     
       "brand": "Nissan",
       "model": "Leaf",
       "socket_type": "CHADEMO",
       "image": "https://www-europe.nissan-cdn.net/content/dam/Nissan/fr/vehicles/LEAF/22TDIEULHD_LEAF_40kwh_TEKNA_BLEUE.png"
   },
   {
-      "car_type_id": 3,
+     
       "brand": "BMW",
       "model": "i3",
       "socket_type": "E/F-T2",
       "image": "https://www.bmw.mq/content/dam/bmw/common/all-models/i-series/i3/2020/navigation/bmw-i-series-i3-modelcard-890x501.png"
   },
   {
-      "car_type_id": 4,
+     
       "brand": "Chevrolet",
       "model": "Bolt EV",
       "socket_type": "CCS-CHADEMO",
       "image": "https://di-uploads-pod30.dealerinspire.com/sweeneycars/uploads/2022/09/2023-Chevrolet-Bolt-EV-Cherry-Red-Tintcoat.png"
   },
   {
-      "car_type_id": 5,
+    
       "brand": "Hyundai",
       "model": "Kona Electric",
       "socket_type": "E/F-T3",
       "image": "https://s7d1.scene7.com/is/image/hyundai/2024-kona-ev-limited-meta-blue-pearl-013:16-9?wid=640&hei=360&fmt=webp-alpha"
   },
   {
-      "car_type_id": 6,
+     
       "brand": "Kia",
       "model": "Soul EV",
       "socket_type": "CHADEMO",
       "image": "https://www.lloydmotorgroup.com/ImageLibrary/images/Kia/Retail/Master/New%20Car%20Range/New-Kia-Soul-EV-Explore-Black-Red.png"
   },
   {
-      "car_type_id": 7,
+   
       "brand": "Audi",
       "model": "e-tron",
       "socket_type": "CCS-CHADEMO",
       "image": "https://cdn.drivek.com/configurator-imgs/cars/fr/$original$/AUDI/E-TRON-GT/40271_SEDAN-4-DOORS/audi-etron-gt-2021.png"
   },
   {
-      "car_type_id": 8,
       "brand": "Jaguar",
       "model": "I-PACE",
       "socket_type": "E/F-T2",
       "image": "https://cdn.drivek.com/configurator-imgs/cars/fr/$original$/JAGUAR/I-PACE/32183_SUV-5-PORTES/jaguar-2018-i-pace.png"
   },
   {
-      "car_type_id": 9,
+    
       "brand": "Porsche",
       "model": "Taycan",
       "socket_type": "CCS-CHADEMO",
       "image": "https://files.porsche.com/filestore/image/multimedia/none/j1-taycan-modelimage-sideshot/model/e36a18ca-fffb-11eb-80dd-005056bbdc38/porsche-model.png"
   },
   {
-      "car_type_id": 10,
+  
       "brand": "Renault",
       "model": "Zoe",
       "socket_type": "E/F-T3",
       "image": "https://chargeguru.com/fr/wp-content/uploads/sites/4/2023/07/331.png"
   },
   {
-      "car_type_id": 11,
+   
       "brand": "Volkswagen",
       "model": "ID.3",
       "socket_type": "CCS-CHADEMO",
       "image": "https://adhgfzvyfq.cloudimg.io/v7/https://id-cs.com/media/car_images/car_613/VW_ID3_MY2023_Gris_Lunaire_Noir_Uni.png?force_format=webp"
   },
   {
-      "car_type_id": 12,
+   
       "brand": "Mercedes-Benz",
       "model": "EQC",
       "socket_type": "E/F-T2",
       "image": "https://www.beev.co/wp-content/uploads/2024/02/1-1-1024x577.png"
   },
   {
-      "car_type_id": 13,
+
       "brand": "Ford",
       "model": "Mustang Mach-E",
       "socket_type": "CCS-CHADEMO",
       "image": "https://res.cloudinary.com/dkugkfusy/image/upload/v1709562177/cars/models/steyowap9os6joylyfo9.png"
   },
   {
-      "car_type_id": 14,
+   
       "brand": "Honda",
       "model": "e",
       "socket_type": "E/F-T3",
       "image": "https://hond.ae/images/hondae-60e42b73.png"
   },
   {
-      "car_type_id": 15,
       "brand": "Mazda",
       "model": "MX-30",
       "socket_type": "CHADEMO",
       "image": "https://img.sm360.ca/ir/w640h390c/images/newcar/ca/2024/mazda/mx-30/gt/hatchback/exteriorColors/2024_mazda_mx-30-ev_gt_032_48a.png"
   },
   {
-      "car_type_id": 16,
+    
       "brand": "Peugeot",
       "model": "e-208",
       "socket_type": "E/F-T2",
       "image": "https://www.leazing.fr/wp-content/uploads/2024/01/peugeot-e-208-2023.png"
   },
   {
-      "car_type_id": 17,
+     
       "brand": "Skoda",
       "model": "Enyaq iV",
       "socket_type": "CCS-CHADEMO",
       "image": "https://cdn.drivek.com/configurator-imgs/cars/fr/$original$/SKODA/ENYAQ-IV/40069_SUV-5-DOORS/skoda-2020-enyaq.png"
   },
   {
-      "car_type_id": 18,
+ 
       "brand": "Volvo",
       "model": "XC40 Recharge",
       "socket_type": "E/F-T3",
       "image": "https://img.sm360.ca/images/web/default/global/pagecompliancevolvoxc40rechargecolorscarousel81659560751537.png"
   },
   {
-      "car_type_id": 19,
+   
       "brand": "Fiat",
       "model": "500e",
       "socket_type": "CHADEMO",
       "image": "https://www.fiat.fr/content/dam/fiat2023/cross/models/new-500/la-prima/la-prima/mobile.png"
   },
   {
-      "car_type_id": 20,
+    
       "brand": "Mini",
       "model": "Electric",
       "socket_type": "E/F-T2",
