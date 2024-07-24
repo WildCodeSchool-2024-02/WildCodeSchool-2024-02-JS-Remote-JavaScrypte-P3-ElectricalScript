@@ -19,6 +19,7 @@ import UserProfilPage from "./pages/UserProfilPage";
 import RegisteredUsers from "./components/admin/RegisteredUsers";
 import AdminPage from "./pages/AdminPage";
 import NavbarDesktop from "./components/NavbarDesktop";
+import LegaleNoticePage from "./pages/LegaleNocitePage";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/navbarDesktop",
         element: <NavbarDesktop />,
+      },
+      {
+        path: "/rgpd",
+        element: <LegaleNoticePage />,
       },
     ],
   },
