@@ -18,6 +18,7 @@ import Stations from "./components/admin/Stations";
 import UserProfilPage from "./pages/UserProfilPage";
 import RegisteredUsers from "./components/admin/RegisteredUsers";
 import AdminPage from "./pages/AdminPage";
+import NavbarDesktop from "./components/NavbarDesktop";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/registeredusers",
         element: <RegisteredUsers />,
+      },
+      {
+        path: "/navbarDesktop",
+        element: <NavbarDesktop />,
       },
     ],
   },
