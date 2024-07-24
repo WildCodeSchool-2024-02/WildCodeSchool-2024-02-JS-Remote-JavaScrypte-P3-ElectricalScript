@@ -20,10 +20,10 @@ const hashPassword = require("../../../services/hashpassword");
 
 const validateUserSchema = require("../../../middleware/ValidateUserSchema");
 
-const validateUserEmail = require("../../../middleware/ValidateEmail");
+const checkExistingUser = require("../../../middleware/CheckExistingUser");
 
 // Route to add a new user
-router.post("/", validateUserSchema, validateUserEmail, hashPassword, create);
+router.post("/", validateUserSchema, checkExistingUser, hashPassword, create);
 // Route to get a list of users
 router.get("/", readAll);
 // Route to get a specific user by ID

@@ -51,10 +51,7 @@ CREATE TABLE reservation (
 
 INSERT INTO role (role) VALUES 
 ('Admin'),
-('User'),
-('Manager'),
-('Guest'),
-('Operator');
+('User');
 
 CREATE TRIGGER before_users_insert
 BEFORE INSERT ON Users

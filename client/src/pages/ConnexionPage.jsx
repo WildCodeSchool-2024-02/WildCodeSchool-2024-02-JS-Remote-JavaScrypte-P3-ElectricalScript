@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../assets/images/Logo.png";
 
 export default function ConnexionPage() {
@@ -22,9 +23,12 @@ export default function ConnexionPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.info(errors);
 
   const onSubmit = async (data) => {
+    if (errors.email || errors.password) {
+      toast.error(errors.email.message || errors.password.message);
+      return;
+    }
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
@@ -35,12 +39,16 @@ export default function ConnexionPage() {
       );
       setCurrentUser(response.data.user);
     } catch (e) {
-      console.error(e.response.data);
+      if (e.response && e.response.data && e.response.data.message) {
+        toast.error(e.response.data.message);
+      } else {
+        toast.error("Une erreur s'est produite");
+      }
     }
   };
 
   return (
-    <main className="flex flex-col justify-center">
+    <main className="bg-bg-geocode bg-cover bg-center min-h-screen flex flex-col justify-center">
       <div className="flex m-auto">
         <img
           src={logo}
@@ -50,7 +58,7 @@ export default function ConnexionPage() {
       </div>
       <div>
         <form
-          className="flex items-center flex-col my-4"
+          className="flex items-center flex-col my-4 mb-8"
           onSubmit={handleSubmit(onSubmit)}
         >
           <label className="my-12" htmlFor="email">
@@ -68,6 +76,11 @@ export default function ConnexionPage() {
                 },
               })}
             />
+            {errors.email && (
+              <span className="flex justify-center max-w-48 text-center text-red-500 ">
+                {errors.email.message}
+              </span>
+            )}
           </label>
           <label>
             <p className="text-white" htmlFor="password">
@@ -86,10 +99,15 @@ export default function ConnexionPage() {
                 },
               })}
             />
+            {errors.password && (
+              <span className="flex justify-center max-w-48 text-center text-red-500 ">
+                {errors.password.message}
+              </span>
+            )}
           </label>
           <p className="text-white my-12 text-center">
             Si vous ne possédez pas de compte cliquez
-            <a href="/" className="text-GreenComp">
+            <a href="/register" className="text-GreenComp">
               <span> ici</span>
             </a>
           </p>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import { toast } from "react-toastify";
 import axios from "axios";
 import L from "leaflet";
 
@@ -50,7 +51,7 @@ export default function MapComponent() {
           }))
         );
       } catch (error) {
-        console.info("Erreur:", error);
+        toast.error("Une erreur s'est produite");
       }
       setLoading(false);
     };
