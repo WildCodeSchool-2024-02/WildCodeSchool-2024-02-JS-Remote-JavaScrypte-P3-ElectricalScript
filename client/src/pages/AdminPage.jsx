@@ -6,6 +6,7 @@ import SideBar from "../components/admin/SideBar";
 import AnimatedNumber from "../components/admin/AnimatedNumber";
 import UploadComponent from "../components/admin/UploadComponent";
 import LoadingComponent from "../components/map/LoadingComponent";
+import NavbarDesktop from "../components/NavbarDesktop";
 
 function AdminPage() {
   const [totalReservations, setTotalReservations] = useState(null);
@@ -92,58 +93,61 @@ function AdminPage() {
   }
 
   return (
-    <div className="bg-black min-h-screen flex text-white">
-      <SideBar />
-      <div className="flex-grow bg-black flex justify-center items-center pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {totalReservations !== null && (
-            <div
-              className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
-              style={{ width: "200px", height: "200px" }}
-            >
-              <span className="text-lg font-bold">Total de réservations</span>
-              <p className="text-2xl mt-2">
-                <AnimatedNumber value={totalReservations} />
-              </p>
-            </div>
-          )}
-          {totalCars !== null && (
-            <div
-              className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
-              style={{ width: "200px", height: "200px" }}
-            >
-              <span className="text-lg font-bold">Total de voitures</span>
-              <p className="text-2xl mt-2">
-                <AnimatedNumber value={totalCars} />
-              </p>
-            </div>
-          )}
-          {totalUsers !== null && (
-            <div
-              className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
-              style={{ width: "200px", height: "200px" }}
-            >
-              <span className="text-lg font-bold">Total d'utilisateurs</span>
-              <p className="text-2xl mt-2">
-                <AnimatedNumber value={totalUsers} />
-              </p>
-            </div>
-          )}
-          {totalStations !== null && (
-            <div
-              className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
-              style={{ width: "200px", height: "200px" }}
-            >
-              <span className="text-lg font-bold">Total de stations</span>
-              <p className="text-2xl mt-2">
-                <AnimatedNumber value={totalStations} />
-              </p>
-              <UploadComponent />
-            </div>
-          )}
+    <>
+      <NavbarDesktop />
+      <div className="bg-bg-geocode h-screen flex text-white">
+        <SideBar />
+        <div className="flex-grow bg-black flex justify-center items-center pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {totalReservations !== null && (
+              <div
+                className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
+                style={{ width: "200px", height: "200px" }}
+              >
+                <span className="text-lg font-bold">Total de réservations</span>
+                <p className="text-2xl mt-2">
+                  <AnimatedNumber value={totalReservations} />
+                </p>
+              </div>
+            )}
+            {totalCars !== null && (
+              <div
+                className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
+                style={{ width: "200px", height: "200px" }}
+              >
+                <span className="text-lg font-bold">Total de voitures</span>
+                <p className="text-2xl mt-2">
+                  <AnimatedNumber value={totalCars} />
+                </p>
+              </div>
+            )}
+            {totalUsers !== null && (
+              <div
+                className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
+                style={{ width: "200px", height: "200px" }}
+              >
+                <span className="text-lg font-bold">Total d'utilisateurs</span>
+                <p className="text-2xl mt-2">
+                  <AnimatedNumber value={totalUsers} />
+                </p>
+              </div>
+            )}
+            {totalStations !== null && (
+              <div
+                className="bg-teal-800 p-6 rounded-lg text-center flex flex-col justify-center items-center"
+                style={{ width: "200px", height: "200px" }}
+              >
+                <span className="text-lg font-bold">Total de stations</span>
+                <p className="text-2xl mt-2">
+                  <AnimatedNumber value={totalStations} />
+                </p>
+                <UploadComponent />
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

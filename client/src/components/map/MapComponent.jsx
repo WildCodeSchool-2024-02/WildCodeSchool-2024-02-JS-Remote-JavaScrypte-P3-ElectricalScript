@@ -15,6 +15,8 @@ import greenIconUrl from "../../assets/images/marker-icon-green.png";
 import greenIconRetinaUrl from "../../assets/images/marker-icon-2x-green.png";
 import shadowIcon from "../../assets/images/marker-shadow.png";
 
+import NavbarDesktop from "../NavbarDesktop";
+
 export default function MapComponent() {
   const [markers, setMarkers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -68,6 +70,7 @@ export default function MapComponent() {
 
   return (
     <div className="h-screen">
+      <NavbarDesktop />
       <MapContainer
         center={[47.27387, 2.70264]}
         zoom={6}

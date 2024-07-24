@@ -4,8 +4,8 @@ import logo from "../../assets/images/Logo.png";
 
 function SideBar() {
   return (
-    <div className="bg-black text-white fixed h-full top-0 left-0">
-      <div className="mt-20 mb-40 bg-GreenComp p-8 rounded-tr-large rounded-br-srounded">
+    <div className="text-white fixed h-full top-0 left-0">
+      <div className="mt-28 mb-40 bg-GreenComp p-8 rounded-tr-large rounded-br-srounded">
         <div className="space-y-8">
           <div className="flex items-center">
             <div className="bg-teal-800 p-2 rounded-full">
@@ -26,7 +26,7 @@ function SideBar() {
                 Voitures
               </button>
             </NavLink>
-          </div> 
+          </div>
           <div className="flex items-center space-x-2">
             <NavLink to="/registeredusers" className="w-full">
               <button
@@ -36,7 +36,7 @@ function SideBar() {
                 Utilisateurs
               </button>
             </NavLink>
-          </div> 
+          </div>
           <div className="flex items-center space-x-2">
             <NavLink to="/admin" className="w-full">
               <button
@@ -57,7 +57,11 @@ function SideBar() {
               </button>
             </NavLink>
           </div>
-          <img src={logo} alt="logo geocode" className="rounded-full w-20 h-20" />
+          <img
+            src={logo}
+            alt="logo geocode"
+            className="rounded-full w-20 h-20"
+          />
         </div>
       </div>
     </div>
@@ -65,6 +69,3 @@ function SideBar() {
 }
 
 export default SideBar;
-
-
-

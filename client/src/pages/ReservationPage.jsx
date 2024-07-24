@@ -6,6 +6,7 @@ import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { format } from "date-fns";
+import Navbar from "../components/Navbar";
 
 export default function ReservationPage() {
   const { currentUser } = useOutletContext();
@@ -137,93 +138,101 @@ export default function ReservationPage() {
   });
 
   return (
-    <main className="bg-black min-h-screen flex items-center justify-center text-white">
-      <section className="bg-gray-800 lg:py-12 lg:flex lg:justify-center rounded-xl p-6">
-        <div className="lg:rounded-xl w-full sm:max-w-sm">
-          <img
-            className="w-full h-60 object-cover rounded-xl"
-            src="/static/image/borneimg.jpg"
-            alt="borne de recharge"
-          />
-        </div>
-        <div className="m-4 flex flex-col justify-center">
-          {name && (
-            <div className="mb-6">
-              <h2 className="text-center text-xl text-white p-4">{name}</h2>
-              <h2 className="text-center text-sm">{address}</h2>
-              <h2 className="text-center text-sm">Puissance: {power} kW</h2>
-            </div>
-          )}
-          <form
-            onSubmit={handleSubmit(validateAndSubmit)}
-            className="flex flex-col gap-4"
-          >
-            <div>
-              <label htmlFor="startAt" className="text-sm">
-                Début de la réservation :
-              </label>
-              <input
-                className="input bg-green-600 text-white focus:border-none w-full p-2 mt-1 focus:ring-2 focus:ring-green-500"
-                type="datetime-local"
-                id="startAt"
-                name="startAt"
-                {...register("startAt", { required: "Ce champ est requis !" })}
-              />
-              <span
-                className={`${errors.startAt ? "text-red-500" : "invisible"}`}
-              >
-                {errors.startAt?.message}
-              </span>
-            </div>
-            <div>
-              <label htmlFor="endAt" className="text-sm">
-                Fin de la réservation :
-              </label>
-              <input
-                className="input bg-green-600 text-white focus:border-none w-full p-2 mt-1 focus:ring-2 focus:ring-green-500"
-                type="datetime-local"
-                id="endAt"
-                name="endAt"
-                {...register("endAt", { required: "Ce champ est requis !" })}
-              />
-              <span
-                className={`${errors.endAt ? "text-red-500" : "invisible"}`}
-              >
-                {errors.endAt?.message}
-              </span>
-            </div>
-            <div className="flex justify-center">
-              <button
-                className="h-10 w-40 mt-4 font-medium tracking-wide text-white transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
-                type="submit"
-              >
-                Enregistrer
-              </button>
-            </div>
-          </form>
-          {estimatedPrice !== null && (
-            <div className="mt-4 text-center">
-              <h3 className="text-sm">Estimation du prix :</h3>
-              <p>{estimatedPrice.toFixed(2)} €</p>
-            </div>
-          )}
-          <div className="mt-6">
-            <h3 className="text-center text-sm mb-4">Créneaux réservés :</h3>
-            <ul>
-              {reservations.map((reservation) => (
-                <li className="text-sm" key={reservation.reservation_id}>
-                  {format(
-                    new Date(reservation.start_at),
-                    "yyyy-MM-dd HH:mm:ss"
-                  )}{" "}
-                  -{" "}
-                  {format(new Date(reservation.end_at), "yyyy-MM-dd HH:mm:ss")}
-                </li>
-              ))}
-            </ul>
+    <>
+      <Navbar />
+      <main className="bg-bg-geocode min-h-screen flex items-center justify-center text-white pb-40">
+        <section className="bg-gray-800 lg:py-12 lg:flex lg:justify-center rounded-xl p-6">
+          <div className="lg:rounded-xl w-full sm:max-w-sm">
+            <img
+              className="w-full h-60 object-cover rounded-xl"
+              src="/static/image/borneimg.jpg"
+              alt="borne de recharge"
+            />
           </div>
-        </div>
-      </section>
-    </main>
+          <div className="m-4 flex flex-col justify-center">
+            {name && (
+              <div className="mb-6">
+                <h2 className="text-center text-xl text-white p-4">{name}</h2>
+                <h2 className="text-center text-sm">{address}</h2>
+                <h2 className="text-center text-sm">Puissance: {power} kW</h2>
+              </div>
+            )}
+            <form
+              onSubmit={handleSubmit(validateAndSubmit)}
+              className="flex flex-col gap-4"
+            >
+              <div>
+                <label htmlFor="startAt" className="text-sm">
+                  Début de la réservation :
+                </label>
+                <input
+                  className="input bg-green-600 text-white focus:border-none w-full p-2 mt-1 focus:ring-2 focus:ring-green-500"
+                  type="datetime-local"
+                  id="startAt"
+                  name="startAt"
+                  {...register("startAt", {
+                    required: "Ce champ est requis !",
+                  })}
+                />
+                <span
+                  className={`${errors.startAt ? "text-red-500" : "invisible"}`}
+                >
+                  {errors.startAt?.message}
+                </span>
+              </div>
+              <div>
+                <label htmlFor="endAt" className="text-sm">
+                  Fin de la réservation :
+                </label>
+                <input
+                  className="input bg-green-600 text-white focus:border-none w-full p-2 mt-1 focus:ring-2 focus:ring-green-500"
+                  type="datetime-local"
+                  id="endAt"
+                  name="endAt"
+                  {...register("endAt", { required: "Ce champ est requis !" })}
+                />
+                <span
+                  className={`${errors.endAt ? "text-red-500" : "invisible"}`}
+                >
+                  {errors.endAt?.message}
+                </span>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className="h-10 w-40 mt-4 font-medium tracking-wide text-white transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                  type="submit"
+                >
+                  Enregistrer
+                </button>
+              </div>
+            </form>
+            {estimatedPrice !== null && (
+              <div className="mt-4 text-center">
+                <h3 className="text-sm">Estimation du prix :</h3>
+                <p>{estimatedPrice.toFixed(2)} €</p>
+              </div>
+            )}
+            <div className="mt-6">
+              <h3 className="text-center text-sm mb-4">Créneaux réservés :</h3>
+              <ul>
+                {reservations.map((reservation) => (
+                  <li className="text-sm" key={reservation.reservation_id}>
+                    {format(
+                      new Date(reservation.start_at),
+                      "yyyy-MM-dd HH:mm:ss"
+                    )}{" "}
+                    -{" "}
+                    {format(
+                      new Date(reservation.end_at),
+                      "yyyy-MM-dd HH:mm:ss"
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
