@@ -4,7 +4,7 @@ import iconevoiture from "../assets/images/voiture-electrique.png";
 
 export default function HomePage() {
   return (
-    <div className="bg-gray-700 h-screen">
+    <div className="bg-bg-geocode bg-cover bg-center h-screen">
       <div className="pt-12">
         <img
           src={logo}

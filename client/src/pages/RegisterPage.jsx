@@ -38,7 +38,7 @@ function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white">
+    <div className="bg-bg-geocode bg-cover bg-center min-h-screen flex items-center justify-center text-white">
       <div className="rounded-xl w-full max-w-md p-6">
         <div className="flex items-center justify-center mb-6">
           <img src={logo} alt="Logo" className="rounded-full w-20 h-20" />
@@ -194,7 +194,7 @@ function RegisterPage() {
               Connexion
             </Link>
           </form>
-          <p className="text-sm mt-2">
+          <p className="text-sm mt-4">
             Déjà inscrit ?
             <Link
               to="/connexion"

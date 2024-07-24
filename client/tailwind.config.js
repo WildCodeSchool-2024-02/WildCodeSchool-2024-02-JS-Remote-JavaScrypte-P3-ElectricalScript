@@ -21,6 +21,9 @@ module.exports = {
       borderRadius: {
         'large': '90px', 
         'srounded': '10px', 
+      },
+      backgroundImage: {
+        'bg-geocode': "url('/src/assets/images/bggeocode.png')",
       }
     },
   },
