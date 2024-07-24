@@ -40,7 +40,7 @@ export default function ConnexionPage() {
   };
 
   return (
-    <main className="flex flex-col justify-center">
+    <main className="bg-bg-geocode bg-cover bg-center min-h-screen flex flex-col justify-center">
       <div className="flex m-auto">
         <img
           src={logo}
@@ -50,7 +50,7 @@ export default function ConnexionPage() {
       </div>
       <div>
         <form
-          className="flex items-center flex-col my-4"
+          className="flex items-center flex-col my-4 mb-8"
           onSubmit={handleSubmit(onSubmit)}
         >
           <label className="my-12" htmlFor="email">
