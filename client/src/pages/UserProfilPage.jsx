@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import avatar from "../assets/images/avatar.png";
@@ -21,7 +22,7 @@ export default function UserProfilPage() {
       );
       setUserInfo(response.data);
     } catch (e) {
-      console.error("utilisateur non existant", e);
+      toast.error("utilisateur non existant", e);
     }
   };
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function UserProfilPage() {
           )
         );
       } catch (e) {
-        console.error("reservation non exisante", e);
+        toast.info("reservation non exisante", e);
       }
     };
 

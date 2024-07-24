@@ -23,7 +23,6 @@ export default function ConnexionPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.info(errors);
 
   const onSubmit = async (data) => {
     if (errors.email || errors.password) {

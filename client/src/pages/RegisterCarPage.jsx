@@ -19,7 +19,7 @@ function RegisterCarPage() {
         );
         setCars(response.data);
       } catch (e) {
-        console.error("error", e);
+        toast.error("Une erreur s'est produite");
       }
     };
     fetchData();
@@ -30,7 +30,7 @@ function RegisterCarPage() {
       const carTypeId = cars[selectedCarIndex]?.car_type_id;
       const userId = currentUser?.user_id;
 
-      const response = await axios.put(
+      await axios.put(
         `${import.meta.env.VITE_API_URL}/api/users`,
         {
           carTypeId,
@@ -40,18 +40,17 @@ function RegisterCarPage() {
           withCredentials: true,
         }
       );
-      console.info(response.data);
+
       toast.success("votre véhicule à été modifier");
       navigate("/profil");
     } catch (e) {
-      console.error(e.response.data);
+      toast.error("Une erreur s'est produite");
     }
   };
 
   const handleSelectCar = (index) => {
     setSelectedCarIndex(index);
     setShowValidateButton(true);
-    console.info(`Car selected with index: ${index}`);
   };
 
   return (
