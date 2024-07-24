@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div className="fixed inset-x-0 bottom-10 flex justify-center items-center">
+    <div className="fixed inset-x-0 bottom-10 flex justify-center items-center z-[500]">
       <div className="bg-GreenComp w-10/12 rounded-xl border-solid border-4 border-GreyComp flex flex-col py-4 ">
         <ul className="flex justify-evenly flex-row items-center  ">
           <Link to="/map">

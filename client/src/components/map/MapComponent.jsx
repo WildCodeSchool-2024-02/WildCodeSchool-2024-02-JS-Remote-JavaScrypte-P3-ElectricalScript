@@ -69,7 +69,7 @@ export default function MapComponent() {
   }
 
   return (
-    <div className="h-[80vh]">
+    <div className="h-screen">
       <Navbar />
 
       <MapContainer

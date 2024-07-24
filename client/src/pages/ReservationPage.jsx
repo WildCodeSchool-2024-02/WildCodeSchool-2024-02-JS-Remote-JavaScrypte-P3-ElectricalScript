@@ -221,7 +221,7 @@ export default function ReservationPage() {
               <ul>
                 {reservations.map((reservation) => (
                   <li
-                    className="text-sm bg-teal-800 p-2 rounded-lg mb-2"
+                    className="text-sm text-center bg-teal-800 p-2 rounded-lg mb-2"
                     key={reservation.reservation_id}
                   >
                     {format(
