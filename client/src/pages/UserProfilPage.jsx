@@ -5,10 +5,11 @@ import Navbar from "../components/Navbar";
 import avatar from "../assets/images/avatar.png";
 
 import LoadingComponent from "../components/map/LoadingComponent";
+import handleLogout from "../lib/logout";
 
 export default function UserProfilPage() {
   const [userInfo, setUserInfo] = useState();
-  const { currentUser } = useOutletContext();
+  const { currentUser, setCurrentUser } = useOutletContext();
   const [loading, setLoading] = useState(true);
   const [reservations, setReservations] = useState([]);
   const navigate = useNavigate();
@@ -23,26 +24,25 @@ export default function UserProfilPage() {
       console.error("utilisateur non existant", e);
     }
   };
-
-  const fetchReservation = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/reservation/`,
-        {
-          params: { userId: currentUser.user_id },
-        }
-      );
-      setReservations(
-        response.data.filter(
-          (reservation) => reservation.user_id === currentUser.user_id
-        )
-      );
-    } catch (e) {
-      console.error("reservation non exisante", e);
-    }
-  };
-
   useEffect(() => {
+    const fetchReservation = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/reservation/`,
+          {
+            params: { userId: currentUser.user_id },
+          }
+        );
+        setReservations(
+          response.data.filter(
+            (reservation) => reservation.user_id === currentUser.user_id
+          )
+        );
+      } catch (e) {
+        console.error("reservation non exisante", e);
+      }
+    };
+
     const timer = setTimeout(() => {
       setLoading(false);
       if (!currentUser) {
@@ -77,6 +77,15 @@ export default function UserProfilPage() {
             <p className="text-white">{userInfo?.email}</p>
           </ul>
         </div>
+      </div>
+      <div>
+        <button
+          type="submit"
+          onClick={() => handleLogout(setCurrentUser)}
+          className="text-white"
+        >
+          Se déconnecter
+        </button>
       </div>
       {/*  */}
       <div className="flex items-center mt-4 gap-6 md:flex-row md:justify-around">
