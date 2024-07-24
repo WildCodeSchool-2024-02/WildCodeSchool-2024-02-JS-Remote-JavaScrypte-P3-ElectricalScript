@@ -26,6 +26,10 @@ export default function ConnexionPage() {
   console.info(errors);
 
   const onSubmit = async (data) => {
+    if (errors.email || errors.password) {
+      toast.error(errors.email.message || errors.password.message);
+      return;
+    }
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
@@ -73,6 +77,11 @@ export default function ConnexionPage() {
                 },
               })}
             />
+            {errors.email && (
+              <span className="flex justify-center max-w-48 text-center text-red-500 ">
+                {errors.email.message}
+              </span>
+            )}
           </label>
           <label>
             <p className="text-white" htmlFor="password">
@@ -91,6 +100,11 @@ export default function ConnexionPage() {
                 },
               })}
             />
+            {errors.password && (
+              <span className="flex justify-center max-w-48 text-center text-red-500 ">
+                {errors.password.message}
+              </span>
+            )}
           </label>
           <p className="text-white my-12 text-center">
             Si vous ne possédez pas de compte cliquez

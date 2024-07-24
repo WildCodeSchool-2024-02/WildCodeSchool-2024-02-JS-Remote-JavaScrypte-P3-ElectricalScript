@@ -8,7 +8,7 @@ import L from "leaflet";
 
 import SearchField from "./SearchField";
 import LocationMarker from "./LocationMarker";
-import LoadingComponent from "../LoadingComponent";
+import LoadingComponent from "./LoadingComponent";
 
 import greenIconUrl from "../../assets/images/marker-icon-green.png";
 import greenIconRetinaUrl from "../../assets/images/marker-icon-2x-green.png";
