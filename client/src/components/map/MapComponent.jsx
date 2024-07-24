@@ -85,9 +85,9 @@ export default function MapComponent() {
           {markers.map((marker) => (
             <Marker key={marker.id} position={marker.position} icon={greenIcon}>
               <Popup>
-                <div className="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <div className="max-w-xs overflow-hidden rounded-lg shadow-lg bg-gray-800">
                   <div className="px-4 py-2">
-                    <h1 className="text-base text-gray-800 uppercase dark:text-white">
+                    <h1 className="text-base uppercase text-white">
                       {marker.name}
                     </h1>
                     <p className="mt-1 text-xs text-gray-400">
