@@ -53,7 +53,7 @@ export default function UploadComponent() {
         toast.dismiss();
         toast.success("Fichier téléchargé avec succès !");
       }
-    }, 20000);
+    }, 25000);
   };
 
   return (

@@ -1,10 +1,11 @@
-/* import { useOutletContext, useNavigate } from "react-router-dom"; */
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import SideBar from "../components/admin/SideBar";
 import AnimatedNumber from "../components/admin/AnimatedNumber";
 import UploadComponent from "../components/admin/UploadComponent";
+import LoadingComponent from "../components/map/LoadingComponent";
 
 function AdminPage() {
   const [totalReservations, setTotalReservations] = useState(null);
@@ -12,20 +13,20 @@ function AdminPage() {
   const [totalUsers, setTotalUsers] = useState(null);
   const [totalStations, setTotalStations] = useState(null);
 
-  /*   const { currentUser } = useOutletContext();
-  const { loading, setLoading } = useState(true);
-  const navigate = useNavigate(); */
+  const { currentUser } = useOutletContext();
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  /*   useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
       if (currentUser?.role !== "Admin") {
         navigate("/map");
       }
-    }, 100);
+    }, 200);
 
     return () => clearTimeout(timer);
-  }); */
+  }, [currentUser, navigate]);
 
   useEffect(() => {
     const fetchTotalReservations = async () => {
@@ -40,7 +41,6 @@ function AdminPage() {
         toast.error("Erreur lors de la récupération des réservations.");
       }
     };
-    fetchTotalReservations();
 
     const fetchTotalCars = async () => {
       try {
@@ -54,7 +54,6 @@ function AdminPage() {
         toast.error("Erreur lors de la récupération des voitures.");
       }
     };
-    fetchTotalCars();
 
     const fetchTotalUsers = async () => {
       try {
@@ -68,7 +67,6 @@ function AdminPage() {
         toast.error("Erreur lors de la récupération des utilisateurs.");
       }
     };
-    fetchTotalUsers();
 
     const fetchTotalStations = async () => {
       try {
@@ -82,8 +80,16 @@ function AdminPage() {
         toast.error("Erreur lors de la récupération des stations.");
       }
     };
+
+    fetchTotalReservations();
+    fetchTotalCars();
+    fetchTotalUsers();
     fetchTotalStations();
   }, []);
+
+  if (loading) {
+    return <LoadingComponent />;
+  }
 
   return (
     <div className="bg-black min-h-screen flex text-white">
