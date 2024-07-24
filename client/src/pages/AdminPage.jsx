@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import SideBar from "../components/admin/SideBar";
 import AnimatedNumber from "../components/admin/AnimatedNumber";
+import UploadComponent from "../components/admin/UploadComponent";
 
 function AdminPage() {
   const [totalReservations, setTotalReservations] = useState(null);
@@ -115,6 +116,7 @@ function AdminPage() {
               <p className="text-2xl mt-2">
                 <AnimatedNumber value={totalStations} />
               </p>
+              <UploadComponent />
             </div>
           )}
         </div>

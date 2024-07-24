@@ -8,11 +8,11 @@ CREATE TABLE station (
     name VARCHAR(255) NOT NULL,
     brand VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    latitude FLOAT ,
-    longitude FLOAT ,
-    position FLOAT,
+    latitude VARCHAR(255) ,
+    longitude VARCHAR(255) ,
+    position VARCHAR(255),
     socket_type VARCHAR(255),
-    power FLOAT,
+    power VARCHAR(255),
     accessibility VARCHAR(255),
     postal_code VARCHAR(25) NOT NULL
 );

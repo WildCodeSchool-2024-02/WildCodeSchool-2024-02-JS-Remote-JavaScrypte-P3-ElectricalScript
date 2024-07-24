@@ -13,10 +13,10 @@ class StationRepository extends AbstractRepository {
       latitude,
       longitude,
       position,
-      socketType,
+      socket_type: socketType,
       power,
       accessibility,
-      postalCode,
+      postal_code: postalCode,
     } = station;
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (

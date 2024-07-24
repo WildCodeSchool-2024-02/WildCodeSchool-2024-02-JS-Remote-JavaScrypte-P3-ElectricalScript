@@ -1,6 +1,8 @@
 const csv = require("csv-parser");
 const fs = require("fs");
 const path = require("path");
+const mysql = require("mysql2/promise");
+require("dotenv").config();
 
 const parseStations = () => {
   const results = [];
@@ -12,7 +14,17 @@ const parseStations = () => {
     "bornes-irve.csv"
   );
 
+  // Database connection configuration
+  const dbConfig = {
+    host: "localhost",
+    user: "pierre",
+    password: "Syusuke1989@",
+    database: "geocode",
+  };
+
   return new Promise((resolve, reject) => {
+    let connection;
+
     fs.createReadStream(filePath)
       .pipe(csv({ separator: ";" }))
       .on("data", (data) => {
@@ -32,25 +44,49 @@ const parseStations = () => {
         results.push(renameData);
       })
       .on("end", () => {
-        // inserer les resultats dans un fichier
-        const jsonFilePath = path.join(
-          __dirname,
-          "..",
-          "..",
-          "database",
-          "data",
-          "stationsinf.json"
-        );
-        fs.writeFile(jsonFilePath, JSON.stringify(results, null, 2), (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve("Le fichier JSON des stations a été créé avec succès.");
-          }
-        });
+        mysql
+          .createConnection(dbConfig)
+          .then((conn) => {
+            connection = conn;
+            const insertQuery = `
+              INSERT INTO station (name, brand, address, latitude, longitude, position, socket_type, power, accessibility, postal_code)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            `;
+
+            const insertPromises = results.map((station) =>
+              connection.execute(insertQuery, [
+                station.name,
+                station.brand,
+                station.address,
+                station.latitude,
+                station.longitude,
+                station.position,
+                station.socket_type,
+                station.power,
+                station.accessibility,
+                station.postal_code,
+              ])
+            );
+
+            return Promise.all(insertPromises);
+          })
+          .then(() => connection.end())
+          .then(() =>
+            resolve(
+              "Les données des stations ont été insérées avec succès dans la base de données."
+            )
+          )
+          .catch((error) => {
+            if (connection) connection.end();
+            reject(error);
+          });
       })
       .on("error", (error) => reject(error));
   });
 };
+
+parseStations()
+  .then((message) => console.info(message))
+  .catch((error) => console.error(error));
 
 module.exports = parseStations;
