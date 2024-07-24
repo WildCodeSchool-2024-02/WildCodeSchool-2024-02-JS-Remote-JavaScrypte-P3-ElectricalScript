@@ -140,7 +140,7 @@ export default function ReservationPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-black min-h-screen flex items-center justify-center text-white pb-40">
+      <main className="bg-bg-geocode min-h-screen flex items-center justify-center text-white pb-40">
         <section className="bg-gray-800 lg:py-12 lg:flex lg:justify-center rounded-xl p-6">
           <div className="lg:rounded-xl w-full sm:max-w-sm">
             <img
