@@ -53,7 +53,7 @@ export default function ConnexionPage() {
         <img
           src={logo}
           alt=""
-          className="w-20 h-20 rounded-full mt-16 border-solid border-white"
+          className="w-40 h-40 rounded-full mt-16 border-solid border-white"
         />
       </div>
       <div>
