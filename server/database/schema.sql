@@ -54,7 +54,7 @@ INSERT INTO role (role) VALUES
 ('User');
 
 CREATE TRIGGER before_users_insert
-BEFORE INSERT ON Users
+BEFORE INSERT ON users
 FOR EACH ROW
 BEGIN
     IF NEW.role_id IS NULL THEN
